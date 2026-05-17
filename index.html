@@ -22,8 +22,8 @@
 		--accent: #ffffff;
 		--accent-dim: #cccccc;
 		--overlay-bg: #0e0e0e;
-		--error-text: #aaaaaa;
-		--success-text: #cccccc;
+		--error-text: #ff9191;
+		--success-text: #b2ffab;
 	}
 
 		* {
@@ -151,7 +151,7 @@
 			margin-bottom: 5px;
 			flex-shrink: 0;
 			letter-spacing: -0.5px;
-			font-weight: 300;
+			font-weight: 600;
 		}
 
 		#formTitle::after {
@@ -161,9 +161,9 @@
 			left: 50%;
 			transform: translateX(-50%);
 			width: 60px;
-			height: 2px;
+			height: 3px;
 			background: var(--text-primary);
-			border-radius: 1px;
+			border-radius: 3px;
 		}
 
 		.input-wrapper {
@@ -274,7 +274,6 @@
 		.form-actions-row {
 			display: flex;
 			justify-content: space-between;
-			align-items: center;
 			flex-wrap: nowrap;
 			gap: 15px;
 		}
@@ -287,6 +286,7 @@
 			cursor: pointer;
 			text-align: center;
 			width: 100%;
+			max-width: 50%;
 			transition: color 0.2s;
 		}
 
@@ -377,7 +377,7 @@
 			align-items: flex-start;
 			gap: 10px;
 			color: var(--text-secondary);
-			font-size: 0.8rem;
+			font-size: 0.9rem;
 			line-height: 1.4;
 			cursor: pointer;
 			user-select: none;
@@ -494,7 +494,6 @@
 					<div class="footer">
 						<div class="form-actions-row">
 							<button type="button" id="switchFormBtnReg" class="action-link primary-action">Вход</button>
-							<button type="button" id="forgotPasswordBtnReg" class="action-link">Забыли пароль?</button>
 						</div>
 						<button type="submit" class="submit-btn">Зарегистрироваться</button>
 					</div>
@@ -525,7 +524,6 @@
 			const switchBtnLogin = document.getElementById('switchFormBtn');
 			const switchBtnReg = document.getElementById('switchFormBtnReg');
 			const forgotBtnLogin = document.getElementById('forgotPasswordBtn');
-			const forgotBtnReg = document.getElementById('forgotPasswordBtnReg');
 
 			let isLogin = true;
 			let isAnimating = false;
@@ -676,8 +674,7 @@
 			switchBtnReg.addEventListener('click', () => toggleForm('back'));
 
 			forgotBtnLogin.addEventListener('click', () => alert('Функция восстановления пароля в разработке.'));
-			forgotBtnReg.addEventListener('click', () => alert('Функция восстановления пароля в разработке.'));
-
+			
 			// Показать/скрыть пароль
 			document.querySelectorAll('.toggle-password').forEach(button => {
 				button.addEventListener('mousedown', (e) => {
@@ -737,7 +734,7 @@
 						return;
 					}
 					if (pw.length < 8) {
-						registerMessage.textContent = 'Пароль минимум 8 символов';
+						registerMessage.textContent = 'Пароль должен быть минимум 8 символов';
 						registerMessage.className = 'message error';
 						return;
 					}
