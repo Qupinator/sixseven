@@ -673,8 +673,11 @@
 			switchBtnLogin.addEventListener('click', () => toggleForm('forward'));
 			switchBtnReg.addEventListener('click', () => toggleForm('back'));
 
-			forgotBtnLogin.addEventListener('click', () => alert('Функция восстановления пароля в разработке.'));
+			//forgotBtnLogin.addEventListener('click', () => alert('Функция восстановления пароля в разработке.'));
 			
+			forgotBtnLogin.addEventListener('click', () => {
+    window.location.href = 'dauni.html';
+});
 			// Показать/скрыть пароль
 			document.querySelectorAll('.toggle-password').forEach(button => {
 				button.addEventListener('mousedown', (e) => {
