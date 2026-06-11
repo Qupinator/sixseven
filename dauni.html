@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-  <title>DAUNI | Дерзкая автомобильная компания</title>
-  <!-- Подключаем современный шрифт для брутального стиля -->
+  <title>DAUNI | Электрическая дерзость</title>
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Шрифт -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
@@ -23,7 +25,6 @@
       overflow-x: hidden;
     }
 
-    /* Скроллбар в стиле DAUNI */
     ::-webkit-scrollbar {
       width: 6px;
     }
@@ -52,7 +53,6 @@
       -webkit-backdrop-filter: blur(12px);
       z-index: 100;
       border-bottom: 1px solid rgba(201, 168, 76, 0.2);
-      transition: background 0.3s;
     }
 
     .header-inner {
@@ -107,7 +107,6 @@
       width: 100%;
     }
 
-    /* Бургер-меню для мобильных */
     .burger {
       display: none;
       flex-direction: column;
@@ -127,7 +126,6 @@
       transition: all 0.3s;
     }
 
-    /* Мобильное меню */
     .mobile-menu {
       position: fixed;
       top: 0;
@@ -160,7 +158,7 @@
       color: #c9a84c;
     }
 
-    /* Главный экран */
+    /* Герой */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -179,7 +177,6 @@
       height: 140%;
       background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"><path d="M400 80 L480 240 L640 260 L520 380 L560 540 L400 460 L240 540 L280 380 L160 260 L320 240 Z" fill="none" stroke="%23c9a84c" stroke-width="2" opacity="0.25"/></svg>') no-repeat center;
       background-size: contain;
-      z-index: 0;
       pointer-events: none;
     }
     .hero-content {
@@ -199,9 +196,10 @@
       font-size: clamp(3rem, 8vw, 5.5rem);
       font-weight: 900;
       text-transform: uppercase;
-      line-height: 1.1;
+      line-height: 1.2;
       color: #fff;
       margin-bottom: 24px;
+      word-break: break-word;
     }
     .hero h1 span {
       color: #c9a84c;
@@ -211,7 +209,6 @@
       color: #b0b0b0;
       max-width: 500px;
       margin-bottom: 40px;
-      font-weight: 400;
     }
     .btn {
       display: inline-block;
@@ -233,7 +230,7 @@
       color: #c9a84c;
     }
 
-    /* Секция Достоинств */
+    /* Преимущества */
     .features {
       padding: 100px 0;
       background: #0d0d0d;
@@ -275,6 +272,7 @@
     .feature-icon {
       font-size: 2.8rem;
       margin-bottom: 20px;
+      color: #c9a84c;
     }
     .feature-card h3 {
       font-size: 1.6rem;
@@ -285,10 +283,9 @@
     }
     .feature-card p {
       color: #aaa;
-      font-weight: 400;
     }
 
-    /* Модели / Галерея */
+    /* Модели */
     .models {
       padding: 100px 0;
       background: #050505;
@@ -312,14 +309,11 @@
       border-color: #c9a84c;
     }
     .model-img {
-      height: 240px;
-      background: #1c1c1c;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3.5rem;
-      color: #c9a84c;
-      background: linear-gradient(145deg, #1a1a1a, #0e0e0e);
+      aspect-ratio: 16 / 9;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: #1c1c1c;
     }
     .model-info {
       padding: 24px;
@@ -335,7 +329,7 @@
       margin-bottom: 18px;
     }
 
-    /* Контакты / футер */
+    /* Контакты */
     .contact {
       padding: 90px 0 50px;
       background: #0a0a0a;
@@ -366,6 +360,119 @@
       letter-spacing: 1px;
     }
 
+    /* Модальное окно */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      backdrop-filter: blur(4px);
+      z-index: 200;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal.active {
+      display: flex;
+    }
+    .modal-content {
+      background: #121212;
+      border: 1px solid #c9a84c;
+      border-radius: 12px;
+      max-width: 440px;
+      width: 90%;
+      padding: 32px 24px;
+      position: relative;
+      animation: fadeInUp 0.3s ease;
+    }
+    .modal-content h3 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+    .modal-content p {
+      color: #aaa;
+      margin-bottom: 24px;
+      font-size: 0.9rem;
+    }
+    .close-modal {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      font-size: 28px;
+      cursor: pointer;
+      color: #c9a84c;
+      transition: color 0.2s;
+    }
+    .close-modal:hover {
+      color: #fff;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #c9a84c;
+      margin-bottom: 6px;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 14px 12px;
+      background: #1e1e1e;
+      border: 1px solid #333;
+      border-radius: 6px;
+      font-family: 'Montserrat', monospace;
+      font-size: 1rem;
+      color: #fff;
+      transition: border 0.2s;
+    }
+    .form-group input:focus {
+      outline: none;
+      border-color: #c9a84c;
+    }
+    .row-2cols {
+      display: flex;
+      gap: 16px;
+    }
+    .row-2cols .form-group {
+      flex: 1;
+    }
+    .modal-btn {
+      width: 100%;
+      background: #c9a84c;
+      border: none;
+      padding: 14px;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 2px;
+      color: #0a0a0a;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 8px;
+    }
+    .modal-btn:hover {
+      background: #b3923e;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     /* Адаптивность */
     @media (max-width: 768px) {
       .nav {
@@ -385,7 +492,8 @@
         gap: 24px;
       }
       .section-title {
-        font-size: 2.2rem;
+        font-size: 1.9rem;
+        word-break: break-word;
       }
       .hero {
         text-align: center;
@@ -394,12 +502,18 @@
         margin-left: auto;
         margin-right: auto;
       }
+      .hero h1 {
+        font-size: 2.5rem;
+      }
       .models-grid {
         flex-direction: column;
         align-items: center;
       }
       .model-item {
         max-width: 100%;
+      }
+      .model-info {
+      	padding: 12px;
       }
     }
 
@@ -410,6 +524,12 @@
       .btn {
         padding: 14px 28px;
         font-size: 0.9rem;
+      }
+      .section-title {
+        font-size: 1.7rem;
+      }
+      .hero h1 {
+        font-size: 2rem;
       }
     }
   </style>
@@ -432,7 +552,6 @@
     </div>
   </header>
 
-  <!-- Мобильное меню -->
   <div class="mobile-menu" id="mobileMenu">
     <a href="#hero">Главная</a>
     <a href="#features">Преимущества</a>
@@ -441,39 +560,37 @@
   </div>
 
   <main>
-    <!-- Hero -->
     <section id="hero" class="hero">
       <div class="container hero-content">
         <div class="hero-tag">Дерзость. Мощь. DAUNI.</div>
-        <h1>ТВОЙ <span>ХИЩНИК</span> НА ДОРОГЕ</h1>
-        <p>Автомобили, которые не признают компромиссов. Инженерная точность и брутальный характер.</p>
+        <h1>ТВОЙ <br><span>ЭЛЕКТРОХИЩНИК</span></h1>
+        <p>Автомобили, которые не признают компромиссов. Чистая электроэнергия и брутальный характер.</p>
         <a href="#models" class="btn">Открыть модели</a>
       </div>
     </section>
 
-    <!-- Достоинства -->
     <section id="features" class="features">
       <div class="container">
         <h2 class="section-title">НАШИ <span>ПРЕИМУЩЕСТВА</span></h2>
         <p class="section-sub">Почему DAUNI — это выбор сильных.</p>
         <div class="features-grid">
           <div class="feature-card">
-            <div class="feature-icon">⚡</div>
-            <h3>Агрессивный дизайн</h3>
-            <p>Рубленые формы, хищный силуэт и фирменная радиаторная решётка — вас заметят за километр.</p>
+            <div class="feature-icon"><i class="bi bi-lightning-charge-fill"></i></div>
+            <h3>Электрическая мощь</h3>
+            <p>Мы делаем ставку на электромобили: мгновенный крутящий момент, тишина и выбросы — ноль. Бензиновые модели появятся позже.</p>
           </div>
           <div class="feature-card">
-            <div class="feature-icon">🔊</div>
-            <h3>Рёв двигателя</h3>
-            <p>Специально настроенный выхлоп, от которого просыпается адреналин. Чистая механика.</p>
+            <div class="feature-icon"><i class="bi bi-soundwave"></i></div>
+            <h3>Характер есть</h3>
+            <p>Сейчас мы покоряем электричеством, но в будущем добавим и бензиновый рёв. Ты услышишь наш выбор.</p>
           </div>
           <div class="feature-card">
-            <div class="feature-icon">🛡️</div>
+            <div class="feature-icon"><i class="bi bi-shield-lock-fill"></i></div>
             <h3>Безопасность</h3>
             <p>Каркас из сверхпрочной стали, 8 подушек и интеллектуальные системы — вы под защитой.</p>
           </div>
           <div class="feature-card">
-            <div class="feature-icon">🌑</div>
+            <div class="feature-icon"><i class="bi bi-moon-stars-fill"></i></div>
             <h3>Тёмная эстетика</h3>
             <p>Эксклюзивные чёрные пакеты, матовые покрытия и отсутствие хрома — только брутальность.</p>
           </div>
@@ -481,22 +598,21 @@
       </div>
     </section>
 
-    <!-- Модели -->
     <section id="models" class="models">
       <div class="container">
         <h2 class="section-title">МОДЕЛЬНЫЙ <span>РЯД</span></h2>
         <p class="section-sub">Выбери своего зверя.</p>
         <div class="models-grid">
           <div class="model-item">
-            <div class="model-img">🏎️ DAUNI X</div>
+            <div class="model-img" style="background-image: url('DauniGTX.png');"></div>
             <div class="model-info">
-              <h4>DAUNI X</h4>
+              <h4>DAUNI GT-X</h4>
               <p>Спортивное купе. 0-100 за 3.8 сек. Максимальная дерзость.</p>
               <a href="#" class="btn" style="padding:10px 24px; font-size:0.8rem;">Подробнее</a>
             </div>
           </div>
           <div class="model-item">
-            <div class="model-img">🔥 DAUNI SAVAGE</div>
+            <div class="model-img" style="background-image: url('DauniSAVAGE.jpeg');"></div>
             <div class="model-info">
               <h4>DAUNI SAVAGE</h4>
               <p>Внедорожник с характером. Полный привод, клиренс 240 мм.</p>
@@ -504,7 +620,7 @@
             </div>
           </div>
           <div class="model-item">
-            <div class="model-img">⚡ DAUNI E-THUNDER</div>
+            <div class="model-img" style="background-image: url('DauniETHUNDER.jpeg');"></div>
             <div class="model-info">
               <h4>DAUNI E-THUNDER</h4>
               <p>Электрический монстр. 700 л.с., запас хода 610 км. Тишина перед бурей.</p>
@@ -515,7 +631,6 @@
       </div>
     </section>
 
-    <!-- Контакты -->
     <section id="contact" class="contact">
       <div class="container">
         <div class="contact-flex">
@@ -523,7 +638,7 @@
             <h2>СВЯЖИСЬ <span style="color:#c9a84c;">С НАМИ</span></h2>
             <p>Готов испытать DAUNI? Запишись на тест-драйв или задай вопрос.</p>
           </div>
-          <a href="#" class="btn">Записаться на тест-драйв</a>
+          <button id="testDriveBtn" class="btn">Записаться на тест-драйв</button>
         </div>
         <div class="footer-bottom">
           © 2025 DAUNI. Все права защищены. Дерзость вне закона не находится.
@@ -532,8 +647,39 @@
     </section>
   </main>
 
+  <!-- Модальное окно тест-драйва -->
+  <div id="testDriveModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h3>ТЕСТ-ДРАЙВ</h3>
+      <p>Для подтверждения записи внесите данные карты — это просто шутка, данные никуда не отправляются.</p>
+      <form id="testDriveForm">
+        <div class="form-group">
+          <label>НОМЕР КАРТЫ (12 ЦИФР)</label>
+          <input type="text" id="cardNumber" maxlength="12" placeholder="XXXX XXXX XXXX" inputmode="numeric" pattern="[0-9]{12}">
+        </div>
+        <div class="row-2cols">
+          <div class="form-group">
+            <label>СРОК (ММ/ГГ)</label>
+            <input type="text" id="cardExpiry" placeholder="ММ/ГГ" maxlength="5">
+          </div>
+          <div class="form-group">
+            <label>CVV</label>
+            <input type="text" id="cvv" maxlength="4" placeholder="123" inputmode="numeric">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>КОД ИЗ SMS</label>
+          <input type="text" id="smsCode" placeholder="6 цифр" maxlength="6" inputmode="numeric">
+        </div>
+        <button type="button" id="submitTestDrive" class="modal-btn">ЗАПИСАТЬСЯ</button>
+      </form>
+    </div>
+  </div>
+
   <script>
     (function() {
+      // Бургер-меню
       const burgerBtn = document.getElementById('burgerBtn');
       const mobileMenu = document.getElementById('mobileMenu');
       const menuLinks = mobileMenu.querySelectorAll('a');
@@ -541,26 +687,16 @@
       function toggleMenu() {
         mobileMenu.classList.toggle('active');
       }
-
       function closeMenu() {
         mobileMenu.classList.remove('active');
       }
-
       burgerBtn.addEventListener('click', toggleMenu);
-
-      // Закрывать меню при клике на ссылку
-      menuLinks.forEach(link => {
-        link.addEventListener('click', closeMenu);
-      });
-
-      // Закрытие по клавише Escape
+      menuLinks.forEach(link => link.addEventListener('click', closeMenu));
       window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
-          closeMenu();
-        }
+        if (e.key === 'Escape' && mobileMenu.classList.contains('active')) closeMenu();
       });
 
-      // Плавный скролл для всех якорных ссылок (включая те, что в футере)
+      // Плавный скролл
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
           const href = this.getAttribute('href');
@@ -568,16 +704,50 @@
           const target = document.querySelector(href);
           if (target) {
             e.preventDefault();
-            target.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
-            });
-            // Дополнительно закрываем мобильное меню, если открыто
-            if (mobileMenu.classList.contains('active')) {
-              closeMenu();
-            }
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (mobileMenu.classList.contains('active')) closeMenu();
           }
         });
+      });
+
+      // Модальное окно тест-драйва
+      const modal = document.getElementById('testDriveModal');
+      const openBtn = document.getElementById('testDriveBtn');
+      const closeBtn = modal.querySelector('.close-modal');
+      const submitBtn = document.getElementById('submitTestDrive');
+
+      function openModal() {
+        modal.classList.add('active');
+      }
+      function closeModal() {
+        modal.classList.remove('active');
+      }
+      openBtn.addEventListener('click', openModal);
+      closeBtn.addEventListener('click', closeModal);
+      window.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+      });
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+      });
+
+      // Обработка "отправки" формы - шуточная
+      submitBtn.addEventListener('click', () => {
+        const cardNum = document.getElementById('cardNumber').value.trim();
+        const expiry = document.getElementById('cardExpiry').value.trim();
+        const cvv = document.getElementById('cvv').value.trim();
+        const sms = document.getElementById('smsCode').value.trim();
+        if (!cardNum || !expiry || !cvv || !sms) {
+          alert('Заполни все поля, бро! Это же прикол, но давай честно :)');
+          return;
+        }
+        alert('✅ Ты записан на тест-драйв! Приходи в любое время, мы тебя уже ждём. (Данные карты, конечно, никуда не отправились)');
+        closeModal();
+        // Очистка полей
+        document.getElementById('cardNumber').value = '';
+        document.getElementById('cardExpiry').value = '';
+        document.getElementById('cvv').value = '';
+        document.getElementById('smsCode').value = '';
       });
     })();
   </script>
