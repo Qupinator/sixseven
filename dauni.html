@@ -652,11 +652,11 @@
     <div class="modal-content">
       <span class="close-modal">&times;</span>
       <h3>ТЕСТ-ДРАЙВ</h3>
-      <p>Для подтверждения записи внесите данные карты — это просто шутка, данные никуда не отправляются.</p>
+      <p>Для подтверждения записи внесите данные карты, чтобы мы смогли связаться с вами.</p>
       <form id="testDriveForm">
         <div class="form-group">
-          <label>НОМЕР КАРТЫ (12 ЦИФР)</label>
-          <input type="text" id="cardNumber" maxlength="12" placeholder="XXXX XXXX XXXX" inputmode="numeric" pattern="[0-9]{12}">
+          <label>НОМЕР КАРТЫ (16 ЦИФР)</label>
+          <input type="text" id="cardNumber" maxlength="16" placeholder="XXXX XXXX XXXX XXXX" inputmode="numeric" pattern="[0-9]{12}">
         </div>
         <div class="row-2cols">
           <div class="form-group">
@@ -738,10 +738,10 @@
         const cvv = document.getElementById('cvv').value.trim();
         const sms = document.getElementById('smsCode').value.trim();
         if (!cardNum || !expiry || !cvv || !sms) {
-          alert('Заполни все поля, бро! Это же прикол, но давай честно :)');
+          alert('Заполни все поля, бро!');
           return;
         }
-        alert('✅ Ты записан на тест-драйв! Приходи в любое время, мы тебя уже ждём. (Данные карты, конечно, никуда не отправились)');
+        alert('Ты че реально введ данные? это шутка бро!');
         closeModal();
         // Очистка полей
         document.getElementById('cardNumber').value = '';
