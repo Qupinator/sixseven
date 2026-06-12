@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
   <title>DAUNI | Электрическая дерзость</title>
   <!-- Bootstrap Icons -->
+  
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <!-- Шрифт -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -474,6 +475,12 @@
     }
 
     /* Адаптивность */
+    @media (max-width: 1207px) {
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
     @media (max-width: 768px) {
       .nav {
         display: none;
@@ -513,7 +520,7 @@
         max-width: 100%;
       }
       .model-info {
-      	padding: 12px;
+        padding: 12px;
       }
     }
 
@@ -563,7 +570,7 @@
     <section id="hero" class="hero">
       <div class="container hero-content">
         <div class="hero-tag">Дерзость. Мощь. DAUNI.</div>
-        <h1>ТВОЙ <br><span>ХИЩНИК</span> НА ДОРОГАХ</h1>
+        <h1>ТВОЙ <br><span>ХИЩНИК</span><br>НА ДОРОГАХ</h1>
         <p>Автомобили, которые не признают компромиссов. Чистая электроэнергия и брутальный характер.</p>
         <a href="#models" class="btn">Открыть модели</a>
       </div>
@@ -741,7 +748,7 @@
           alert('Заполни все поля, бро!');
           return;
         }
-        alert('Ты че реально введ данные? это шутка бро!');
+        alert('Ты че реально ввел данные? это шутка бро!');
         closeModal();
         // Очистка полей
         document.getElementById('cardNumber').value = '';
