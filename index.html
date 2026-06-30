@@ -516,71 +516,128 @@
       display: block;
     }
 
-    /* Блог — компактная карусель */
+    /* Блог — карусель с большими блоками */
     .blog {
       padding: 80px 0;
       background: #0d0d0d;
     }
     .blog-carousel-wrapper {
-      overflow-x: auto;
-      overflow-y: hidden;
-      -webkit-overflow-scrolling: touch;
-      scroll-behavior: smooth;
-      padding-bottom: 10px;
-      margin: 0 -8px;
-    }
-    .blog-carousel-wrapper::-webkit-scrollbar {
-      height: 6px;
-    }
-    .blog-carousel-wrapper::-webkit-scrollbar-track {
-      background: #1a1a1a;
-      border-radius: 3px;
-    }
-    .blog-carousel-wrapper::-webkit-scrollbar-thumb {
-      background: #c9a84c;
-      border-radius: 3px;
-    }
-    .blog-grid {
-      display: flex;
-      flex-wrap: nowrap;
-      gap: 20px;
-      padding: 0 8px;
-    }
-    .blog-card {
-      flex: 0 0 280px;
-      background: #141414;
-      border: 1px solid #2a2a2a;
-      border-radius: 8px;
+      position: relative;
+      width: 100%;
+      height: 400px;
       overflow: hidden;
-      transition: transform 0.3s, border-color 0.3s;
+      border-radius: 8px;
+      border: 1px solid #2a2a2a;
+      background: #0a0a0a;
     }
-    .blog-card:hover {
-      transform: translateY(-5px);
-      border-color: #c9a84c;
+    .blog-slides {
+      display: flex;
+      transition: transform 0.6s ease;
+      height: 100%;
+      will-change: transform;
     }
-    .blog-card .blog-img {
-      height: 140px;
+    .blog-slide {
+      flex: 0 0 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      padding: 0 30px;
       background-size: cover;
       background-position: center;
       background-color: #1c1c1c;
+      position: relative;
     }
-    .blog-card .blog-content {
-      padding: 14px 16px;
+    .blog-slide::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 60%;
+      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+      pointer-events: none;
     }
-    .blog-card .blog-content h4 {
-      font-size: 1.1rem;
+    .blog-slide-content {
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
       color: #fff;
-      margin-bottom: 6px;
-      line-height: 1.3;
+      padding-bottom: 40px;
     }
-    .blog-card .blog-content p {
-      color: #aaa;
+    .blog-slide-content h3 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+    }
+    .blog-slide-content p {
+      font-size: 1.1rem;
+      color: #ddd;
+      margin-bottom: 10px;
+    }
+    .blog-slide-content .blog-date {
       font-size: 0.9rem;
-      margin-bottom: 6px;
+      color: #c9a84c;
+      font-weight: 600;
+      letter-spacing: 1px;
     }
-    .blog-card .blog-content .blog-date {
-      color: #777;
-      font-size: 0.75rem;
+
+    /* Кнопки карусели */
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      background: rgba(0,0,0,0.6);
+      border: 1px solid #c9a84c;
+      color: #c9a84c;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, color 0.2s;
+      backdrop-filter: blur(4px);
+    }
+    .carousel-btn:hover {
+      background: #c9a84c;
+      color: #0a0a0a;
+    }
+    .carousel-btn.prev {
+      left: 16px;
+    }
+    .carousel-btn.next {
+      right: 16px;
+    }
+
+    /* Индикаторы (линии) */
+    .carousel-indicators {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .carousel-indicators .indicator {
+      width: 40px;
+      height: 3px;
+      background: rgba(255,255,255,0.3);
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .carousel-indicators .indicator.active {
+      background: #c9a84c;
+      transform: scaleY(1.5);
+    }
+    .carousel-indicators .indicator:hover {
+      background: rgba(201,168,76,0.6);
     }
 
     /* О нас */
@@ -1062,6 +1119,7 @@
       transform: translateY(0);
     }
 
+    /* Адаптивность */
     @media (max-width: 768px) {
       .nav {
         display: none;
@@ -1127,11 +1185,28 @@
       .reviews-grid {
         grid-template-columns: 1fr;
       }
-      .blog-card {
-        flex: 0 0 240px;
+      .blog-carousel-wrapper {
+        height: 320px;
       }
-      .blog-card .blog-img {
-        height: 120px;
+      .blog-slide-content h3 {
+        font-size: 1.6rem;
+      }
+      .blog-slide-content p {
+        font-size: 1rem;
+      }
+      .carousel-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.4rem;
+      }
+      .carousel-btn.prev {
+        left: 10px;
+      }
+      .carousel-btn.next {
+        right: 10px;
+      }
+      .carousel-indicators .indicator {
+        width: 30px;
       }
       .mobile-menu a {
         font-size: 1.2rem;
@@ -1164,6 +1239,9 @@
       .stat-item .stat-number {
         font-size: 2.6rem;
       }
+      .map-wrapper {
+        height: 300px;
+      }
     }
 
     @media (max-width: 480px) {
@@ -1195,11 +1273,23 @@
         padding: 14px 16px;
         border-radius: 10px;
       }
-      .blog-card {
-        flex: 0 0 200px;
+      .blog-carousel-wrapper {
+        height: 280px;
       }
-      .blog-card .blog-img {
-        height: 100px;
+      .blog-slide-content h3 {
+        font-size: 1.4rem;
+      }
+      .blog-slide-content p {
+        font-size: 0.9rem;
+      }
+      .carousel-btn {
+        width: 34px;
+        height: 34px;
+        font-size: 1.2rem;
+      }
+      .carousel-indicators .indicator {
+        width: 24px;
+        height: 2px;
       }
       .stats-grid {
         grid-template-columns: 1fr 1fr;
@@ -1207,6 +1297,9 @@
       }
       .stat-item .stat-number {
         font-size: 2.2rem;
+      }
+      .map-wrapper {
+        height: 250px;
       }
     }
   </style>
@@ -1381,53 +1474,62 @@
       </div>
     </section>
 
-    <!-- Блог — компактная карусель -->
+    <!-- Блог — новая карусель с большими блоками -->
     <section id="blog" class="blog">
       <div class="container">
         <h2 class="section-title animate-on-scroll">БЛОГ <span>И НОВОСТИ</span></h2>
         <p class="section-sub animate-on-scroll">Следите за обновлениями</p>
         <div class="blog-carousel-wrapper animate-on-scroll">
-          <div class="blog-grid">
-            <div class="blog-card">
-              <div class="blog-img" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 200%22><rect width=%22400%22 height=%22200%22 fill=%22%231c1c1c%22/><text x=%2250%22 y=%22120%22 fill=%22%23c9a84c%22 font-size=%2230%22 font-family=%22Montserrat%22>Новость 1</text></svg>');"></div>
-              <div class="blog-content">
-                <h4>DAUNI GT-X получил обновление</h4>
-                <p>Увеличенная мощность и новый обвес.</p>
+          <div class="blog-slides" id="blogSlides">
+            <!-- Слайд 1 -->
+            <div class="blog-slide" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 400%22><rect width=%221200%22 height=%22400%22 fill=%22%231c1c1c%22/><text x=%2250%22 y=%22200%22 fill=%22%23c9a84c%22 font-size=%2280%22 font-family=%22Montserrat%22 textLength=%22900%22>Новость 1</text></svg>');">
+              <div class="blog-slide-content">
+                <h3>DAUNI GT-X получил обновление</h3>
+                <p>Увеличенная мощность до 650 л.с. и новый аэродинамический обвес.</p>
                 <div class="blog-date">12 марта 2025</div>
               </div>
             </div>
-            <div class="blog-card">
-              <div class="blog-img" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 200%22><rect width=%22400%22 height=%22200%22 fill=%22%231c1c1c%22/><text x=%2250%22 y=%22120%22 fill=%22%23c9a84c%22 font-size=%2230%22 font-family=%22Montserrat%22>Новость 2</text></svg>');"></div>
-              <div class="blog-content">
-                <h4>Запуск новой зарядной сети</h4>
-                <p>50 быстрых станций по России.</p>
+            <!-- Слайд 2 -->
+            <div class="blog-slide" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 400%22><rect width=%221200%22 height=%22400%22 fill=%22%231c1c1c%22/><text x=%2250%22 y=%22200%22 fill=%22%23c9a84c%22 font-size=%2280%22 font-family=%22Montserrat%22 textLength=%22900%22>Новость 2</text></svg>');">
+              <div class="blog-slide-content">
+                <h3>Запуск новой зарядной сети</h3>
+                <p>DAUNI открывает 50 сверхбыстрых станций по всей России.</p>
                 <div class="blog-date">5 апреля 2025</div>
               </div>
             </div>
-            <div class="blog-card">
-              <div class="blog-img" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 200%22><rect width=%22400%22 height=%22200%22 fill=%22%231c1c1c%22/><text x=%2250%22 y=%22120%22 fill=%22%23c9a84c%22 font-size=%2230%22 font-family=%22Montserrat%22>Новость 3</text></svg>');"></div>
-              <div class="blog-content">
-                <h4>DAUNI SAVAGE — лучший внедорожник 2025</h4>
-                <p>Премия «Золотой руль».</p>
+            <!-- Слайд 3 -->
+            <div class="blog-slide" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 400%22><rect width=%221200%22 height=%22400%22 fill=%22%231c1c1c%22/><text x=%2250%22 y=%22200%22 fill=%22%23c9a84c%22 font-size=%2280%22 font-family=%22Montserrat%22 textLength=%22900%22>Новость 3</text></svg>');">
+              <div class="blog-slide-content">
+                <h3>DAUNI SAVAGE — лучший внедорожник 2025</h3>
+                <p>Премия «Золотой руль» за инновации и проходимость.</p>
                 <div class="blog-date">20 февраля 2025</div>
               </div>
             </div>
-            <div class="blog-card">
-              <div class="blog-img" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 200%22><rect width=%22400%22 height=%22200%22 fill=%22%231c1c1c%22/><text x=%2250%22 y=%22120%22 fill=%22%23c9a84c%22 font-size=%2230%22 font-family=%22Montserrat%22>Новость 4</text></svg>');"></div>
-              <div class="blog-content">
-                <h4>Новый цвет кузова — «Ночной хищник»</h4>
-                <p>Эксклюзивный матовый чёрный.</p>
+            <!-- Слайд 4 -->
+            <div class="blog-slide" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 400%22><rect width=%221200%22 height=%22400%22 fill=%22%231c1c1c%22/><text x=%2250%22 y=%22200%22 fill=%22%23c9a84c%22 font-size=%2280%22 font-family=%22Montserrat%22 textLength=%22900%22>Новость 4</text></svg>');">
+              <div class="blog-slide-content">
+                <h3>Новый цвет кузова — «Ночной хищник»</h3>
+                <p>Эксклюзивный матовый чёрный с эффектом хамелеона.</p>
                 <div class="blog-date">10 января 2025</div>
               </div>
             </div>
-            <div class="blog-card">
-              <div class="blog-img" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 200%22><rect width=%22400%22 height=%22200%22 fill=%22%231c1c1c%22/><text x=%2250%22 y=%22120%22 fill=%22%23c9a84c%22 font-size=%2230%22 font-family=%22Montserrat%22>Новость 5</text></svg>');"></div>
-              <div class="blog-content">
-                <h4>DAUNI участвует в автосалоне в Женеве</h4>
-                <p>Премьера концепт-кара.</p>
+            <!-- Слайд 5 -->
+            <div class="blog-slide" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 400%22><rect width=%221200%22 height=%22400%22 fill=%22%231c1c1c%22/><text x=%2250%22 y=%22200%22 fill=%22%23c9a84c%22 font-size=%2280%22 font-family=%22Montserrat%22 textLength=%22900%22>Новость 5</text></svg>');">
+              <div class="blog-slide-content">
+                <h3>DAUNI участвует в автосалоне в Женеве</h3>
+                <p>Премьера концепт-кара с необычным дизайном.</p>
                 <div class="blog-date">5 декабря 2024</div>
               </div>
             </div>
+          </div>
+
+          <!-- Кнопки управления -->
+          <button class="carousel-btn prev" id="carouselPrev"><i class="bi bi-chevron-left"></i></button>
+          <button class="carousel-btn next" id="carouselNext"><i class="bi bi-chevron-right"></i></button>
+
+          <!-- Индикаторы (линии) -->
+          <div class="carousel-indicators" id="carouselIndicators">
+            <!-- Генерируются JS -->
           </div>
         </div>
       </div>
@@ -1528,7 +1630,7 @@
     </section>
   </main>
 
-  <!-- Модальное окно с характеристиками авто -->
+  <!-- Модальные окна (без изменений) -->
   <div id="detailsModal" class="modal">
     <div class="modal-content large">
       <button class="close-modal">&times;</button>
@@ -1536,16 +1638,13 @@
       <div class="car-detail">
         <div class="car-img" id="detailImage" style="background-image: url('DauniGTX.png');"></div>
         <div class="car-specs">
-          <ul id="detailSpecs">
-            <!-- заполняется JS -->
-          </ul>
+          <ul id="detailSpecs"></ul>
           <button class="btn" style="margin-top:20px;" id="detailTestDrive">Записаться на тест-драйв</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Модальное окно просмотра фото (полноэкранный зум) -->
   <div id="photoModal" class="modal photo-modal">
     <div class="modal-content">
       <button class="close-modal">&times;</button>
@@ -1558,7 +1657,6 @@
     </div>
   </div>
 
-  <!-- Модальное окно тест-драйва -->
   <div id="testDriveModal" class="modal testdrive-modal">
     <div class="modal-content">
       <button class="close-modal">&times;</button>
@@ -1572,7 +1670,6 @@
     </div>
   </div>
 
-  <!-- Модальное окно отзыва -->
   <div id="reviewModal" class="modal review-modal">
     <div class="modal-content">
       <button class="close-modal">&times;</button>
@@ -1601,7 +1698,6 @@
     </div>
   </div>
 
-  <!-- Cookie-уведомление (компактное окошко) -->
   <div id="cookieBanner" class="cookie-banner">
     <div class="cookie-text">
       Мы используем файлы cookie для улучшения работы сайта. Продолжая использовать сайт, вы соглашаетесь с <a href="#">политикой обработки данных</a>.
@@ -1611,18 +1707,14 @@
 
   <script>
     (function() {
-      // ---------- Бургер-меню (компактное) ----------
+      // ---------- Бургер-меню ----------
       const burgerBtn = document.getElementById('burgerBtn');
       const mobileMenu = document.getElementById('mobileMenu');
       const closeMobile = document.getElementById('closeMobile');
       const menuLinks = mobileMenu.querySelectorAll('a');
 
-      function toggleMenu() {
-        mobileMenu.classList.toggle('active');
-      }
-      function closeMenu() {
-        mobileMenu.classList.remove('active');
-      }
+      function toggleMenu() { mobileMenu.classList.toggle('active'); }
+      function closeMenu() { mobileMenu.classList.remove('active'); }
       burgerBtn.addEventListener('click', toggleMenu);
       closeMobile.addEventListener('click', closeMenu);
       menuLinks.forEach(link => link.addEventListener('click', closeMenu));
@@ -1644,7 +1736,7 @@
         });
       });
 
-      // ---------- Данные моделей (с обновлёнными ценами) ----------
+      // ---------- Данные моделей ----------
       const modelData = {
         gtx: {
           name: 'DAUNI GT-X',
@@ -1707,19 +1799,15 @@
         detailTestDriveBtn.dataset.model = modelKey;
       }
 
-      function closeDetailsModal() {
-        detailsModal.classList.remove('active');
-      }
+      function closeDetailsModal() { detailsModal.classList.remove('active'); }
 
       document.querySelectorAll('.details-btn').forEach(btn => {
         btn.addEventListener('click', function(e) {
           e.stopPropagation();
-          const model = this.dataset.model;
-          openDetails(model);
+          openDetails(this.dataset.model);
         });
       });
 
-      // Клик по картинке модели для открытия фото
       document.querySelectorAll('.model-img').forEach(img => {
         img.addEventListener('click', function() {
           const bg = getComputedStyle(this).backgroundImage;
@@ -1736,7 +1824,7 @@
         if (e.key === 'Escape' && detailsModal.classList.contains('active')) closeDetailsModal();
       });
 
-      // ---------- Модалка просмотра фото (зум) ----------
+      // ---------- Фото-зум ----------
       const photoModal = document.getElementById('photoModal');
       const photoImg = document.getElementById('photoModalImg');
       const closePhoto = photoModal.querySelector('.close-modal');
@@ -1748,10 +1836,7 @@
         photoImg.style.transform = `scale(${currentZoom})`;
         photoModal.classList.add('active');
       }
-
-      function closePhotoModal() {
-        photoModal.classList.remove('active');
-      }
+      function closePhotoModal() { photoModal.classList.remove('active'); }
 
       closePhoto.addEventListener('click', closePhotoModal);
       window.addEventListener('click', (e) => {
@@ -1780,24 +1865,19 @@
         photoImg.style.transform = `scale(${currentZoom})`;
       });
 
-      // Клик по фото в деталях для открытия в полноэкранном режиме
       detailImage.addEventListener('click', function() {
         const bg = getComputedStyle(this).backgroundImage;
         const url = bg.replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
         if (url) openPhotoModal(url);
       });
 
-      // ---------- Модалка тест-драйва ----------
+      // ---------- Тест-драйв ----------
       const testDriveModal = document.getElementById('testDriveModal');
       const openTestDriveBtn = document.getElementById('testDriveBtn');
       const closeTestDrive = testDriveModal.querySelector('.close-modal');
 
-      function openTestDriveModal() {
-        testDriveModal.classList.add('active');
-      }
-      function closeTestDriveModal() {
-        testDriveModal.classList.remove('active');
-      }
+      function openTestDriveModal() { testDriveModal.classList.add('active'); }
+      function closeTestDriveModal() { testDriveModal.classList.remove('active'); }
       openTestDriveBtn.addEventListener('click', openTestDriveModal);
       closeTestDrive.addEventListener('click', closeTestDriveModal);
       window.addEventListener('click', (e) => {
@@ -1825,9 +1905,8 @@
       const nameGroup = document.getElementById('nameGroup');
 
       let selectedRating = 0;
-      let editingReview = null; // индекс в массиве reviews, если редактируем
+      let editingReview = null;
 
-      // Загружаем отзывы из localStorage или используем заглушки
       let reviews = [];
       try {
         const stored = localStorage.getItem('dauni_reviews');
@@ -1843,7 +1922,6 @@
         }
       } catch(e) {}
 
-      // Работа с куками для имени пользователя
       function getCookie(name) {
         const value = `; ${document.cookie}`;
         const parts = value.split(`; ${name}=`);
@@ -1856,7 +1934,7 @@
       }
 
       let currentUserName = getCookie('dauni_user');
-      let userReviewIndex = -1; // индекс отзыва пользователя
+      let userReviewIndex = -1;
 
       function renderReviews() {
         reviewsContainer.innerHTML = '';
@@ -1874,7 +1952,6 @@
           reviewsContainer.appendChild(card);
           if (isUser) userReviewIndex = index;
         });
-        // Обновить видимость кнопки "Оставить отзыв"
         if (userReviewIndex !== -1) {
           openReviewBtn.textContent = 'Редактировать мой отзыв';
         } else {
@@ -1883,21 +1960,18 @@
         observeAnimatedElements();
       }
 
-      // Открыть модалку для нового отзыва или редактирования
       function openReviewModal(editIndex = -1) {
         if (editIndex !== -1 && reviews[editIndex]) {
-          // Редактирование
           const rev = reviews[editIndex];
           reviewModalTitle.textContent = 'Редактировать отзыв';
           reviewNameInput.value = rev.name;
           reviewTextInput.value = rev.text;
           selectedRating = rev.rating;
           starElements.forEach(s => s.classList.toggle('active', parseInt(s.dataset.value) <= selectedRating));
-          nameGroup.style.display = 'none'; // имя не редактируем
+          nameGroup.style.display = 'none';
           reviewSubmitBtn.textContent = 'Сохранить';
           editingReview = editIndex;
         } else {
-          // Новый отзыв
           reviewModalTitle.textContent = 'Оставить отзыв';
           reviewNameInput.value = currentUserName || '';
           reviewTextInput.value = '';
@@ -1910,9 +1984,7 @@
         reviewModal.classList.add('active');
       }
 
-      function closeReviewModal() {
-        reviewModal.classList.remove('active');
-      }
+      function closeReviewModal() { reviewModal.classList.remove('active'); }
 
       openReviewBtn.addEventListener('click', () => {
         if (userReviewIndex !== -1) {
@@ -1929,7 +2001,6 @@
         if (e.key === 'Escape' && reviewModal.classList.contains('active')) closeReviewModal();
       });
 
-      // Звёзды в модалке
       starElements.forEach(star => {
         star.addEventListener('click', function() {
           selectedRating = parseInt(this.dataset.value);
@@ -1944,7 +2015,6 @@
         });
       });
 
-      // Отправка/сохранение отзыва
       reviewForm.addEventListener('submit', function(e) {
         e.preventDefault();
         const name = reviewNameInput.value.trim();
@@ -1955,7 +2025,6 @@
         }
 
         if (editingReview !== -1 && editingReview < reviews.length) {
-          // Редактируем
           reviews[editingReview].text = text;
           reviews[editingReview].rating = selectedRating;
           reviews[editingReview].date = new Date().toLocaleDateString('ru-RU');
@@ -1966,15 +2035,12 @@
           return;
         }
 
-        // Новый отзыв
         if (currentUserName) {
-          // Если уже есть имя, проверяем, не оставлял ли он уже отзыв
           if (userReviewIndex !== -1) {
             alert('Вы уже оставили отзыв. Вы можете отредактировать его через кнопку "Редактировать".');
             return;
           }
         } else {
-          // Сохраняем имя в куки
           setCookie('dauni_user', name);
           currentUserName = name;
         }
@@ -1992,7 +2058,6 @@
         alert('Спасибо за ваш отзыв!');
       });
 
-      // Редактирование через кнопку на карточке
       reviewsContainer.addEventListener('click', function(e) {
         const btn = e.target.closest('.edit-btn');
         if (btn) {
@@ -2003,10 +2068,9 @@
         }
       });
 
-      // Первоначальная отрисовка
       renderReviews();
 
-      // ---------- FAQ аккордеон ----------
+      // ---------- FAQ ----------
       document.querySelectorAll('.faq-question').forEach(q => {
         q.addEventListener('click', function() {
           const item = this.parentElement;
@@ -2032,7 +2096,7 @@
       }
       observeAnimatedElements();
 
-      // ---------- Анимация счётчиков статистики ----------
+      // ---------- Анимация счётчиков ----------
       function animateCounters() {
         const statNumbers = document.querySelectorAll('.stat-number');
         const observer = new IntersectionObserver((entries) => {
@@ -2059,7 +2123,7 @@
       }
       animateCounters();
 
-      // ---------- Cookie-уведомление (компактное окошко) ----------
+      // ---------- Cookie ----------
       const cookieBanner = document.getElementById('cookieBanner');
       const cookieAcceptBtn = document.getElementById('cookieAcceptBtn');
       if (!getCookie('cookies_accepted')) {
@@ -2071,6 +2135,90 @@
         setCookie('cookies_accepted', 'true', 365);
         cookieBanner.classList.add('hidden');
       });
+
+      // ---------- Карусель блога ----------
+      const slidesWrapper = document.getElementById('blogSlides');
+      const slides = slidesWrapper.querySelectorAll('.blog-slide');
+      const totalSlides = slides.length;
+      let currentIndex = 0;
+      let autoSlideInterval = null;
+      const intervalTime = 5000; // 5 сек
+
+      // Создаём индикаторы
+      const indicatorsContainer = document.getElementById('carouselIndicators');
+      indicatorsContainer.innerHTML = '';
+      for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('span');
+        dot.className = 'indicator' + (i === 0 ? ' active' : '');
+        dot.dataset.index = i;
+        dot.addEventListener('click', () => goToSlide(i));
+        indicatorsContainer.appendChild(dot);
+      }
+
+      function goToSlide(index) {
+        if (index < 0) index = totalSlides - 1;
+        if (index >= totalSlides) index = 0;
+        currentIndex = index;
+        slidesWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+        // Обновить индикаторы
+        document.querySelectorAll('.indicator').forEach((dot, i) => {
+          dot.classList.toggle('active', i === currentIndex);
+        });
+      }
+
+      function nextSlide() {
+        goToSlide(currentIndex + 1);
+      }
+
+      function prevSlide() {
+        goToSlide(currentIndex - 1);
+      }
+
+      // Кнопки
+      document.getElementById('carouselNext').addEventListener('click', () => {
+        nextSlide();
+        resetAutoSlide();
+      });
+      document.getElementById('carouselPrev').addEventListener('click', () => {
+        prevSlide();
+        resetAutoSlide();
+      });
+
+      // Автопрокрутка
+      function startAutoSlide() {
+        if (autoSlideInterval) clearInterval(autoSlideInterval);
+        autoSlideInterval = setInterval(nextSlide, intervalTime);
+      }
+
+      function resetAutoSlide() {
+        if (autoSlideInterval) {
+          clearInterval(autoSlideInterval);
+          startAutoSlide();
+        }
+      }
+
+      // Остановка при наведении
+      const carouselWrapper = document.querySelector('.blog-carousel-wrapper');
+      carouselWrapper.addEventListener('mouseenter', () => {
+        if (autoSlideInterval) {
+          clearInterval(autoSlideInterval);
+          autoSlideInterval = null;
+        }
+      });
+      carouselWrapper.addEventListener('mouseleave', startAutoSlide);
+
+      // Старт карусели
+      goToSlide(0);
+      startAutoSlide();
+
+      // Для мобильных: касание для остановки
+      carouselWrapper.addEventListener('touchstart', () => {
+        if (autoSlideInterval) {
+          clearInterval(autoSlideInterval);
+          autoSlideInterval = null;
+        }
+      });
+      carouselWrapper.addEventListener('touchend', startAutoSlide);
 
     })();
   </script>
