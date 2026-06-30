@@ -10,7 +10,7 @@
   <meta name="keywords" content="DAUNI,DAUN,DOWNI,DOWN,DAYN,DAYNI,ДАУНИ,ДАУН,ДОВН,ДОВНИ,Авто,Автомобиль,Электромобиль,GT,GT-X,SAVAGE,Дерзость,Мощь,Qupinator">
   <meta name="author" content="Qupinator">
 
-    <!-- Open Graph для Telegram, Discord, VK -->
+  <!-- Open Graph -->
   <meta property="og:title" content="DAUNI | Электрическая дерзость">
   <meta property="og:description" content="Автомобили, которые не признают компромиссов. Чистая электроэнергия и брутальный характер.">
   <meta property="og:image" content="https://qupinator.github.io/sixseven/favicon.png">
@@ -333,6 +333,7 @@
       overflow: hidden;
       border: 1px solid #222;
       transition: border 0.3s;
+      cursor: pointer;
     }
     .model-item:hover {
       border-color: #c9a84c;
@@ -343,6 +344,11 @@
       background-position: center;
       background-repeat: no-repeat;
       background-color: #1c1c1c;
+      transition: transform 0.3s;
+      position: relative;
+    }
+    .model-img:hover {
+      transform: scale(1.03);
     }
     .model-info {
       padding: 24px;
@@ -356,6 +362,275 @@
     .model-info p {
       color: #aaa;
       margin-bottom: 18px;
+    }
+    .model-info .btn {
+      padding: 10px 24px;
+      font-size: 0.8rem;
+    }
+
+    /* Отзывы */
+    .reviews {
+      padding: 100px 0;
+      background: #0d0d0d;
+    }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+    .review-card {
+      background: #141414;
+      border: 1px solid #2a2a2a;
+      padding: 24px;
+      border-radius: 8px;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .review-card:hover {
+      transform: translateY(-5px);
+      border-color: #c9a84c;
+    }
+    .review-card .stars {
+      color: #c9a84c;
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+    .review-card .author {
+      font-weight: 700;
+      color: #fff;
+      margin-top: 12px;
+    }
+    .review-card .date {
+      font-size: 0.8rem;
+      color: #777;
+    }
+    .review-card .text {
+      color: #bbb;
+      margin-top: 8px;
+    }
+    .review-form {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #111;
+      padding: 30px 24px;
+      border-radius: 8px;
+      border: 1px solid #2a2a2a;
+    }
+    .review-form h4 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+    .review-form .form-group {
+      margin-bottom: 18px;
+    }
+    .review-form .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #c9a84c;
+      margin-bottom: 6px;
+    }
+    .review-form .form-group input,
+    .review-form .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      background: #1e1e1e;
+      border: 1px solid #333;
+      border-radius: 6px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      color: #fff;
+      transition: border 0.2s;
+    }
+    .review-form .form-group input:focus,
+    .review-form .form-group textarea:focus {
+      outline: none;
+      border-color: #c9a84c;
+    }
+    .review-form .form-group textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    .star-rating {
+      display: flex;
+      gap: 8px;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+    .star-rating .star {
+      color: #555;
+      transition: color 0.2s;
+    }
+    .star-rating .star.active {
+      color: #c9a84c;
+    }
+    .review-form .btn {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      background: #c9a84c;
+      color: #0a0a0a;
+      font-weight: 700;
+      letter-spacing: 2px;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 6px;
+    }
+    .review-form .btn:hover {
+      background: #b3923e;
+    }
+
+    /* Карта */
+    .map-section {
+      padding: 100px 0;
+      background: #0a0a0a;
+    }
+    .map-wrapper {
+      border: 2px solid #c9a84c;
+      border-radius: 8px;
+      overflow: hidden;
+      max-width: 100%;
+      height: 400px;
+    }
+    .map-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    /* Блог */
+    .blog {
+      padding: 100px 0;
+      background: #0d0d0d;
+    }
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    .blog-card {
+      background: #141414;
+      border: 1px solid #2a2a2a;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .blog-card:hover {
+      transform: translateY(-5px);
+      border-color: #c9a84c;
+    }
+    .blog-card .blog-img {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+      background-color: #1c1c1c;
+    }
+    .blog-card .blog-content {
+      padding: 20px;
+    }
+    .blog-card .blog-content h4 {
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .blog-card .blog-content p {
+      color: #aaa;
+      font-size: 0.95rem;
+    }
+    .blog-card .blog-content .blog-date {
+      color: #777;
+      font-size: 0.8rem;
+      margin-top: 12px;
+    }
+
+    /* О нас */
+    .about {
+      padding: 100px 0;
+      background: #050505;
+    }
+    .about-text {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      color: #bbb;
+      line-height: 1.8;
+    }
+    .about-text strong {
+      color: #c9a84c;
+    }
+
+    /* FAQ */
+    .faq {
+      padding: 100px 0;
+      background: #0d0d0d;
+    }
+    .faq-list {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      border-bottom: 1px solid #2a2a2a;
+      padding: 18px 0;
+    }
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 600;
+      color: #fff;
+      font-size: 1.1rem;
+      transition: color 0.2s;
+    }
+    .faq-question:hover {
+      color: #c9a84c;
+    }
+    .faq-question i {
+      font-size: 1.4rem;
+      transition: transform 0.3s;
+    }
+    .faq-item.active .faq-question i {
+      transform: rotate(180deg);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s;
+      color: #aaa;
+      padding: 0 20px;
+    }
+    .faq-item.active .faq-answer {
+      max-height: 300px;
+      padding: 16px 20px 8px;
+    }
+
+    /* Соцсети */
+    .social-links {
+      padding: 60px 0 40px;
+      background: #0a0a0a;
+      border-top: 1px solid #222;
+      text-align: center;
+    }
+    .social-links .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      font-size: 2.4rem;
+      margin-top: 20px;
+    }
+    .social-links .social-icons a {
+      color: #aaa;
+      transition: color 0.3s, transform 0.3s;
+      display: inline-block;
+    }
+    .social-links .social-icons a:hover {
+      color: #c9a84c;
+      transform: scale(1.2);
     }
 
     /* Контакты */
@@ -389,7 +664,7 @@
       letter-spacing: 1px;
     }
 
-    /* Модальное окно */
+    /* Модальные окна */
     .modal {
       display: none;
       position: fixed;
@@ -397,11 +672,12 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.8);
+      background: rgba(0,0,0,0.85);
       backdrop-filter: blur(4px);
       z-index: 200;
       justify-content: center;
       align-items: center;
+      padding: 20px;
     }
     .modal.active {
       display: flex;
@@ -410,25 +686,25 @@
       background: #121212;
       border: 1px solid #c9a84c;
       border-radius: 12px;
-      max-width: 440px;
-      width: 90%;
+      max-width: 700px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
       padding: 32px 24px;
       position: relative;
       animation: fadeInUp 0.3s ease;
     }
+    .modal-content.large {
+      max-width: 1000px;
+    }
     .modal-content h3 {
       font-size: 1.8rem;
       font-weight: 700;
-      margin-bottom: 8px;
+      margin-bottom: 16px;
       color: #fff;
       letter-spacing: 1px;
     }
-    .modal-content p {
-      color: #aaa;
-      margin-bottom: 24px;
-      font-size: 0.9rem;
-    }
-    .close-modal {
+    .modal-content .close-modal {
       position: absolute;
       top: 16px;
       right: 20px;
@@ -436,59 +712,135 @@
       cursor: pointer;
       color: #c9a84c;
       transition: color 0.2s;
+      background: none;
+      border: none;
     }
-    .close-modal:hover {
+    .modal-content .close-modal:hover {
       color: #fff;
     }
-    .form-group {
-      margin-bottom: 20px;
+    .modal-content .car-detail {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 10px;
     }
-    .form-group label {
-      display: block;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+    .modal-content .car-detail .car-img {
+      flex: 1 1 300px;
+      background-size: cover;
+      background-position: center;
+      min-height: 250px;
+      border-radius: 8px;
+      border: 1px solid #333;
+      cursor: zoom-in;
+    }
+    .modal-content .car-detail .car-specs {
+      flex: 2 1 300px;
+    }
+    .modal-content .car-detail .car-specs ul {
+      list-style: none;
+      padding: 0;
+    }
+    .modal-content .car-detail .car-specs li {
+      padding: 8px 0;
+      border-bottom: 1px solid #2a2a2a;
+      display: flex;
+      justify-content: space-between;
+    }
+    .modal-content .car-detail .car-specs li span:first-child {
+      color: #999;
+    }
+    .modal-content .car-detail .car-specs li span:last-child {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    /* Модалка просмотра фото */
+    .photo-modal .modal-content {
+      max-width: 95vw;
+      max-height: 95vh;
+      padding: 10px;
+      background: transparent;
+      border: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    .photo-modal .modal-content img {
+      max-width: 100%;
+      max-height: 90vh;
+      border-radius: 6px;
+      border: 2px solid #c9a84c;
+      cursor: zoom-out;
+      transition: transform 0.2s;
+    }
+    .photo-modal .modal-content .close-modal {
+      color: #fff;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 36px;
+    }
+    .photo-modal .modal-content .close-modal:hover {
       color: #c9a84c;
-      margin-bottom: 6px;
     }
-    .form-group input {
-      width: 100%;
-      padding: 14px 12px;
+    .photo-modal .modal-content .zoom-controls {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 20px;
+      background: rgba(0,0,0,0.6);
+      padding: 12px 24px;
+      border-radius: 40px;
+      border: 1px solid #c9a84c;
+    }
+    .photo-modal .modal-content .zoom-controls button {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.8rem;
+      cursor: pointer;
+      padding: 0 10px;
+      transition: color 0.2s;
+    }
+    .photo-modal .modal-content .zoom-controls button:hover {
+      color: #c9a84c;
+    }
+
+    /* Модалка тест-драйва (замена) */
+    .testdrive-modal .modal-content {
+      max-width: 500px;
+      text-align: center;
+    }
+    .testdrive-modal .modal-content .social-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin: 30px 0;
+    }
+    .testdrive-modal .modal-content .social-buttons a {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
       background: #1e1e1e;
       border: 1px solid #333;
+      padding: 14px 28px;
       border-radius: 6px;
-      font-family: 'Montserrat', monospace;
-      font-size: 1rem;
       color: #fff;
-      transition: border 0.2s;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.2s, border-color 0.2s;
     }
-    .form-group input:focus {
-      outline: none;
+    .testdrive-modal .modal-content .social-buttons a:hover {
+      background: #2a2a2a;
       border-color: #c9a84c;
     }
-    .row-2cols {
-      display: flex;
-      gap: 16px;
-    }
-    .row-2cols .form-group {
-      flex: 1;
-    }
-    .modal-btn {
-      width: 100%;
-      background: #c9a84c;
-      border: none;
-      padding: 14px;
-      font-weight: 700;
-      font-size: 1rem;
-      letter-spacing: 2px;
-      color: #0a0a0a;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all 0.2s;
-      margin-top: 8px;
-    }
-    .modal-btn:hover {
-      background: #b3923e;
+    .testdrive-modal .modal-content .social-buttons i {
+      font-size: 1.8rem;
+      color: #c9a84c;
     }
 
     @keyframes fadeInUp {
@@ -500,6 +852,17 @@
         opacity: 1;
         transform: translateY(0);
       }
+    }
+
+    /* Анимация появления при скролле */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     /* Адаптивность */
@@ -550,6 +913,12 @@
       .model-info {
         padding: 12px;
       }
+      .modal-content {
+        padding: 20px 16px;
+      }
+      .photo-modal .modal-content img {
+        max-height: 70vh;
+      }
     }
 
     @media (max-width: 480px) {
@@ -566,6 +935,12 @@
       .hero h1 {
         font-size: 2.5rem;
       }
+      .reviews-grid {
+        grid-template-columns: 1fr;
+      }
+      .blog-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -577,6 +952,10 @@
         <a href="#hero">Главная</a>
         <a href="#features">Преимущества</a>
         <a href="#models">Модели</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#blog">Блог</a>
+        <a href="#about">О нас</a>
+        <a href="#faq">FAQ</a>
         <a href="#contact">Контакты</a>
       </nav>
       <button class="burger" id="burgerBtn" aria-label="Меню">
@@ -591,10 +970,15 @@
     <a href="#hero">Главная</a>
     <a href="#features">Преимущества</a>
     <a href="#models">Модели</a>
+    <a href="#reviews">Отзывы</a>
+    <a href="#blog">Блог</a>
+    <a href="#about">О нас</a>
+    <a href="#faq">FAQ</a>
     <a href="#contact">Контакты</a>
   </div>
 
   <main>
+    <!-- Герой -->
     <section id="hero" class="hero">
       <div class="container hero-content">
         <div class="hero-tag">Дерзость. Мощь. DAUNI.</div>
@@ -604,27 +988,28 @@
       </div>
     </section>
 
+    <!-- Преимущества -->
     <section id="features" class="features">
       <div class="container">
-        <h2 class="section-title">НАШИ <span>ПРЕИМУЩЕСТВА</span></h2>
-        <p class="section-sub">Почему DAUNI — это выбор сильных.</p>
+        <h2 class="section-title animate-on-scroll">НАШИ <span>ПРЕИМУЩЕСТВА</span></h2>
+        <p class="section-sub animate-on-scroll">Почему DAUNI — это выбор сильных.</p>
         <div class="features-grid">
-          <div class="feature-card">
+          <div class="feature-card animate-on-scroll">
             <div class="feature-icon"><i class="bi bi-lightning-charge-fill"></i></div>
             <h3>Электрическая мощь</h3>
             <p>Мы делаем ставку на электромобили: мгновенный крутящий момент, тишина и выбросы — ноль. Бензиновые модели появятся позже.</p>
           </div>
-          <div class="feature-card">
+          <div class="feature-card animate-on-scroll">
             <div class="feature-icon"><i class="bi bi-soundwave"></i></div>
             <h3>Характер есть</h3>
             <p>Сейчас мы покоряем электричеством, но в будущем добавим и бензиновый рёв. Ты услышишь наш выбор.</p>
           </div>
-          <div class="feature-card">
+          <div class="feature-card animate-on-scroll">
             <div class="feature-icon"><i class="bi bi-shield-lock-fill"></i></div>
             <h3>Безопасность</h3>
             <p>Каркас из сверхпрочной стали, 8 подушек и интеллектуальные системы — вы под защитой.</p>
           </div>
-          <div class="feature-card">
+          <div class="feature-card animate-on-scroll">
             <div class="feature-icon"><i class="bi bi-moon-stars-fill"></i></div>
             <h3>Тёмная эстетика</h3>
             <p>Эксклюзивные чёрные пакеты, матовые покрытия и отсутствие хрома — только брутальность.</p>
@@ -633,39 +1018,172 @@
       </div>
     </section>
 
+    <!-- Модели -->
     <section id="models" class="models">
       <div class="container">
-        <h2 class="section-title">МОДЕЛЬНЫЙ <span>РЯД</span></h2>
-        <p class="section-sub">Выбери своего зверя.</p>
+        <h2 class="section-title animate-on-scroll">МОДЕЛЬНЫЙ <span>РЯД</span></h2>
+        <p class="section-sub animate-on-scroll">Выбери своего зверя.</p>
         <div class="models-grid">
-          <div class="model-item">
+          <div class="model-item animate-on-scroll" data-model="gtx">
             <div class="model-img" style="background-image: url('DauniGTX.png');"></div>
             <div class="model-info">
               <h4>DAUNI GT-X</h4>
               <p>Спортивное купе. 0-100 за 3.8 сек. Максимальная дерзость.</p>
-              <a href="#" class="btn" style="padding:10px 24px; font-size:0.8rem;">Подробнее</a>
+              <button class="btn details-btn" data-model="gtx">Подробнее</button>
             </div>
           </div>
-          <div class="model-item">
+          <div class="model-item animate-on-scroll" data-model="savage">
             <div class="model-img" style="background-image: url('DauniSAVAGE.jpeg');"></div>
             <div class="model-info">
               <h4>DAUNI SAVAGE</h4>
               <p>Внедорожник с характером. Полный привод, клиренс 240 мм.</p>
-              <a href="#" class="btn" style="padding:10px 24px; font-size:0.8rem;">Подробнее</a>
+              <button class="btn details-btn" data-model="savage">Подробнее</button>
             </div>
           </div>
-          <div class="model-item">
+          <div class="model-item animate-on-scroll" data-model="ethunder">
             <div class="model-img" style="background-image: url('DauniETHUNDER.jpeg');"></div>
             <div class="model-info">
               <h4>DAUNI E-THUNDER</h4>
               <p>Электрический монстр. 700 л.с., запас хода 610 км. Тишина перед бурей.</p>
-              <a href="#" class="btn" style="padding:10px 24px; font-size:0.8rem;">Подробнее</a>
+              <button class="btn details-btn" data-model="ethunder">Подробнее</button>
             </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- Отзывы -->
+    <section id="reviews" class="reviews">
+      <div class="container">
+        <h2 class="section-title animate-on-scroll">ОТЗЫВЫ <span>КЛИЕНТОВ</span></h2>
+        <p class="section-sub animate-on-scroll">Реальные люди о DAUNI</p>
+        <div class="reviews-grid" id="reviewsContainer">
+          <!-- Отзывы будут добавлены JS -->
+        </div>
+        <div class="review-form animate-on-scroll">
+          <h4>Оставить отзыв</h4>
+          <form id="reviewForm">
+            <div class="form-group">
+              <label>Ваше имя</label>
+              <input type="text" id="reviewName" placeholder="Иван" required>
+            </div>
+            <div class="form-group">
+              <label>Оценка</label>
+              <div class="star-rating" id="starRating">
+                <span class="star" data-value="1">★</span>
+                <span class="star" data-value="2">★</span>
+                <span class="star" data-value="3">★</span>
+                <span class="star" data-value="4">★</span>
+                <span class="star" data-value="5">★</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Текст отзыва</label>
+              <textarea id="reviewText" placeholder="Поделитесь впечатлениями..." required></textarea>
+            </div>
+            <button type="submit" class="btn">Отправить</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Карта дилерских центров -->
+    <section id="map" class="map-section">
+      <div class="container">
+        <h2 class="section-title animate-on-scroll">ДИЛЕРСКИЕ <span>ЦЕНТРЫ</span></h2>
+        <p class="section-sub animate-on-scroll">Найдите ближайший к вам</p>
+        <div class="map-wrapper animate-on-scroll">
+          <!-- Яндекс.Карты (iframe) -->
+          <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A8f6c8e2e3b0c8c4a6b7c9d0e1f2a3b4c&amp;source=constructor" width="100%" height="400" frameborder="0"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- Блог -->
+    <section id="blog" class="blog">
+      <div class="container">
+        <h2 class="section-title animate-on-scroll">БЛОГ <span>И НОВОСТИ</span></h2>
+        <p class="section-sub animate-on-scroll">Следите за обновлениями</p>
+        <div class="blog-grid" id="blogContainer">
+          <!-- Заглушки новостей -->
+          <div class="blog-card animate-on-scroll">
+            <div class="blog-img" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 200%22><rect width=%22400%22 height=%22200%22 fill=%22%231c1c1c%22/><text x=%2250%22 y=%22120%22 fill=%22%23c9a84c%22 font-size=%2230%22 font-family=%22Montserrat%22>Новость 1</text></svg>');"></div>
+            <div class="blog-content">
+              <h4>DAUNI GT-X получил обновление</h4>
+              <p>Увеличенная мощность и новый аэродинамический обвес.</p>
+              <div class="blog-date">12 марта 2025</div>
+            </div>
+          </div>
+          <div class="blog-card animate-on-scroll">
+            <div class="blog-img" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 200%22><rect width=%22400%22 height=%22200%22 fill=%22%231c1c1c%22/><text x=%2250%22 y=%22120%22 fill=%22%23c9a84c%22 font-size=%2230%22 font-family=%22Montserrat%22>Новость 2</text></svg>');"></div>
+            <div class="blog-content">
+              <h4>Запуск новой зарядной сети</h4>
+              <p>DAUNI открывает 50 сверхбыстрых станций по всей России.</p>
+              <div class="blog-date">5 апреля 2025</div>
+            </div>
+          </div>
+          <div class="blog-card animate-on-scroll">
+            <div class="blog-img" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 200%22><rect width=%22400%22 height=%22200%22 fill=%22%231c1c1c%22/><text x=%2250%22 y=%22120%22 fill=%22%23c9a84c%22 font-size=%2230%22 font-family=%22Montserrat%22>Новость 3</text></svg>');"></div>
+            <div class="blog-content">
+              <h4>DAUNI SAVAGE признан лучшим внедорожником 2025</h4>
+              <p>Премия «Золотой руль» за инновации и проходимость.</p>
+              <div class="blog-date">20 февраля 2025</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- О нас -->
+    <section id="about" class="about">
+      <div class="container">
+        <h2 class="section-title animate-on-scroll">О <span>НАС</span></h2>
+        <div class="about-text animate-on-scroll">
+          <p><strong>DAUNI</strong> — это бренд, рождённый из страсти к скорости, технологиям и индивидуальности. Мы создаём электромобили, которые не просто перемещают вас из точки А в Б, а дарят эмоции. Наша философия — <strong>дерзость без компромиссов</strong>. Каждая деталь, от дизайна до силовой установки, продумана так, чтобы вы чувствовали себя хищником на дороге.</p>
+          <p>Мы гордимся тем, что используем только передовые экологичные технологии, но при этом сохраняем брутальный характер. Наша команда — это инженеры и дизайнеры, которые не боятся экспериментировать. В будущем мы планируем расширить линейку бензиновыми моделями, чтобы каждый мог найти свой DAUNI.</p>
+          <p style="margin-top:20px;"><strong>Присоединяйтесь к семье DAUNI — выберите свой путь!</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq">
+      <div class="container">
+        <h2 class="section-title animate-on-scroll">ЧАСТО <span>ЗАДАВАЕМЫЕ ВОПРОСЫ</span></h2>
+        <div class="faq-list animate-on-scroll">
+          <div class="faq-item active">
+            <div class="faq-question">
+              <span>Какая гарантия на автомобили DAUNI?</span>
+              <i class="bi bi-chevron-down"></i>
+            </div>
+            <div class="faq-answer">Мы предоставляем 5 лет гарантии на новый автомобиль или 150 000 км пробега (в зависимости от того, что наступит раньше). На батарею — отдельная гарантия 8 лет.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Сколько времени занимает зарядка?</span>
+              <i class="bi bi-chevron-down"></i>
+            </div>
+            <div class="faq-answer">Стандартная зарядка от домашней розетки (220В) — около 12 часов. Быстрая зарядка на станции мощностью 150 кВт — до 80% за 30 минут.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Будут ли бензиновые модели?</span>
+              <i class="bi bi-chevron-down"></i>
+            </div>
+            <div class="faq-answer">Да, мы работаем над гибридными и бензиновыми версиями. Ожидайте анонс в 2026 году.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Где можно приобрести автомобиль?</span>
+              <i class="bi bi-chevron-down"></i>
+            </div>
+            <div class="faq-answer">Наши дилерские центры отмечены на карте выше. Также вы можете оформить заказ онлайн с доставкой на дом.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Контакты и кнопка тест-драйва -->
     <section id="contact" class="contact">
       <div class="container">
         <div class="contact-flex">
@@ -682,39 +1200,57 @@
     </section>
   </main>
 
-  <!-- Модальное окно тест-драйва -->
-  <div id="testDriveModal" class="modal">
+  <!-- Модальное окно с характеристиками авто -->
+  <div id="detailsModal" class="modal">
+    <div class="modal-content large">
+      <button class="close-modal">&times;</button>
+      <h3 id="detailTitle">DAUNI GT-X</h3>
+      <div class="car-detail">
+        <div class="car-img" id="detailImage" style="background-image: url('DauniGTX.png');"></div>
+        <div class="car-specs">
+          <ul id="detailSpecs">
+            <li><span>Мощность</span><span>600 л.с.</span></li>
+            <li><span>Разгон 0-100</span><span>3.8 сек</span></li>
+            <li><span>Запас хода</span><span>480 км</span></li>
+            <li><span>Привод</span><span>Полный</span></li>
+            <li><span>Цена</span><span>от 5 990 000 ₽</span></li>
+          </ul>
+          <button class="btn" style="margin-top:20px;" id="detailTestDrive">Записаться на тест-драйв</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Модальное окно просмотра фото (полноэкранный зум) -->
+  <div id="photoModal" class="modal photo-modal">
     <div class="modal-content">
-      <span class="close-modal">&times;</span>
-      <h3>ТЕСТ-ДРАЙВ</h3>
-      <p>Для подтверждения записи внесите данные карты, чтобы мы смогли связаться с вами.</p>
-      <form id="testDriveForm">
-        <div class="form-group">
-          <label>НОМЕР КАРТЫ (16 ЦИФР)</label>
-          <input type="text" id="cardNumber" maxlength="16" placeholder="XXXX XXXX XXXX XXXX" inputmode="numeric" pattern="[0-9]{12}">
-        </div>
-        <div class="row-2cols">
-          <div class="form-group">
-            <label>СРОК (ММ/ГГ)</label>
-            <input type="text" id="cardExpiry" placeholder="ММ/ГГ" maxlength="5">
-          </div>
-          <div class="form-group">
-            <label>CVV</label>
-            <input type="text" id="cvv" maxlength="4" placeholder="123" inputmode="numeric">
-          </div>
-        </div>
-        <div class="form-group">
-          <label>КОД ИЗ SMS</label>
-          <input type="text" id="smsCode" placeholder="6 цифр" maxlength="6" inputmode="numeric">
-        </div>
-        <button type="button" id="submitTestDrive" class="modal-btn">ЗАПИСАТЬСЯ</button>
-      </form>
+      <button class="close-modal">&times;</button>
+      <img id="photoModalImg" src="" alt="Автомобиль DAUNI">
+      <div class="zoom-controls">
+        <button id="zoomOutBtn"><i class="bi bi-dash-circle"></i></button>
+        <button id="zoomResetBtn"><i class="bi bi-arrows-angle-expand"></i></button>
+        <button id="zoomInBtn"><i class="bi bi-plus-circle"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Модальное окно тест-драйва (переадресация) -->
+  <div id="testDriveModal" class="modal testdrive-modal">
+    <div class="modal-content">
+      <button class="close-modal">&times;</button>
+      <h3>ЗАПИСЬ НА ТЕСТ-ДРАЙВ</h3>
+      <p>Свяжитесь с нами в удобном мессенджере или сообществе, и наш менеджер согласует время.</p>
+      <div class="social-buttons">
+        <a href="https://t.me/DAUNI_bot" target="_blank"><i class="bi bi-telegram"></i> Telegram</a>
+        <a href="https://vk.com/dauni" target="_blank"><i class="bi bi-vk"></i> ВКонтакте</a>
+      </div>
+      <p style="color:#777; font-size:0.9rem;">Или позвоните по телефону: <strong style="color:#c9a84c;">+7 (800) 555-35-35</strong></p>
     </div>
   </div>
 
   <script>
     (function() {
-      // Бургер-меню
+      // ---------- Бургер-меню ----------
       const burgerBtn = document.getElementById('burgerBtn');
       const mobileMenu = document.getElementById('mobileMenu');
       const menuLinks = mobileMenu.querySelectorAll('a');
@@ -731,7 +1267,7 @@
         if (e.key === 'Escape' && mobileMenu.classList.contains('active')) closeMenu();
       });
 
-      // Плавный скролл
+      // ---------- Плавный скролл ----------
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
           const href = this.getAttribute('href');
@@ -745,45 +1281,262 @@
         });
       });
 
-      // Модальное окно тест-драйва
-      const modal = document.getElementById('testDriveModal');
-      const openBtn = document.getElementById('testDriveBtn');
-      const closeBtn = modal.querySelector('.close-modal');
-      const submitBtn = document.getElementById('submitTestDrive');
+      // ---------- Данные моделей ----------
+      const modelData = {
+        gtx: {
+          name: 'DAUNI GT-X',
+          img: 'DauniGTX.png',
+          specs: [
+            ['Мощность', '600 л.с.'],
+            ['Разгон 0-100', '3.8 сек'],
+            ['Запас хода', '480 км'],
+            ['Привод', 'Полный'],
+            ['Цена', 'от 5 990 000 ₽']
+          ]
+        },
+        savage: {
+          name: 'DAUNI SAVAGE',
+          img: 'DauniSAVAGE.jpeg',
+          specs: [
+            ['Мощность', '450 л.с.'],
+            ['Разгон 0-100', '5.2 сек'],
+            ['Запас хода', '520 км'],
+            ['Привод', 'Полный'],
+            ['Цена', 'от 6 990 000 ₽']
+          ]
+        },
+        ethunder: {
+          name: 'DAUNI E-THUNDER',
+          img: 'DauniETHUNDER.jpeg',
+          specs: [
+            ['Мощность', '700 л.с.'],
+            ['Разгон 0-100', '3.2 сек'],
+            ['Запас хода', '610 км'],
+            ['Привод', 'Полный'],
+            ['Цена', 'от 8 490 000 ₽']
+          ]
+        }
+      };
 
-      function openModal() {
-        modal.classList.add('active');
+      // ---------- Модалка деталей ----------
+      const detailsModal = document.getElementById('detailsModal');
+      const detailTitle = document.getElementById('detailTitle');
+      const detailImage = document.getElementById('detailImage');
+      const detailSpecs = document.getElementById('detailSpecs');
+      const closeDetails = detailsModal.querySelector('.close-modal');
+      const detailTestDriveBtn = document.getElementById('detailTestDrive');
+
+      function openDetails(modelKey) {
+        const data = modelData[modelKey];
+        if (!data) return;
+        detailTitle.textContent = data.name;
+        detailImage.style.backgroundImage = `url('${data.img}')`;
+        detailSpecs.innerHTML = data.specs.map(([label, value]) => 
+          `<li><span>${label}</span><span>${value}</span></li>`
+        ).join('');
+        detailsModal.classList.add('active');
+        // Запоминаем, какая модель для тест-драйва
+        detailTestDriveBtn.dataset.model = modelKey;
       }
-      function closeModal() {
-        modal.classList.remove('active');
+
+      function closeDetailsModal() {
+        detailsModal.classList.remove('active');
       }
-      openBtn.addEventListener('click', openModal);
-      closeBtn.addEventListener('click', closeModal);
+
+      // Открытие по кнопкам "Подробнее"
+      document.querySelectorAll('.details-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const model = this.dataset.model;
+          openDetails(model);
+        });
+      });
+
+      // Клик по картинке модели для открытия фото в полноэкранном режиме
+      document.querySelectorAll('.model-img').forEach(img => {
+        img.addEventListener('click', function() {
+          const bg = getComputedStyle(this).backgroundImage;
+          const url = bg.replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
+          if (url) openPhotoModal(url);
+        });
+      });
+
+      closeDetails.addEventListener('click', closeDetailsModal);
       window.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
+        if (e.target === detailsModal) closeDetailsModal();
       });
       window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+        if (e.key === 'Escape' && detailsModal.classList.contains('active')) closeDetailsModal();
       });
 
-      // Обработка "отправки" формы - шуточная
-      submitBtn.addEventListener('click', () => {
-        const cardNum = document.getElementById('cardNumber').value.trim();
-        const expiry = document.getElementById('cardExpiry').value.trim();
-        const cvv = document.getElementById('cvv').value.trim();
-        const sms = document.getElementById('smsCode').value.trim();
-        if (!cardNum || !expiry || !cvv || !sms) {
-          alert('Заполни все поля, бро!');
+      // ---------- Модалка просмотра фото (зум) ----------
+      const photoModal = document.getElementById('photoModal');
+      const photoImg = document.getElementById('photoModalImg');
+      const closePhoto = photoModal.querySelector('.close-modal');
+      let currentZoom = 1;
+
+      function openPhotoModal(imgUrl) {
+        photoImg.src = imgUrl;
+        currentZoom = 1;
+        photoImg.style.transform = `scale(${currentZoom})`;
+        photoModal.classList.add('active');
+      }
+
+      function closePhotoModal() {
+        photoModal.classList.remove('active');
+      }
+
+      closePhoto.addEventListener('click', closePhotoModal);
+      window.addEventListener('click', (e) => {
+        if (e.target === photoModal) closePhotoModal();
+      });
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && photoModal.classList.contains('active')) closePhotoModal();
+      });
+
+      // Управление зумом
+      document.getElementById('zoomInBtn').addEventListener('click', () => {
+        currentZoom = Math.min(currentZoom + 0.2, 3);
+        photoImg.style.transform = `scale(${currentZoom})`;
+      });
+      document.getElementById('zoomOutBtn').addEventListener('click', () => {
+        currentZoom = Math.max(currentZoom - 0.2, 0.5);
+        photoImg.style.transform = `scale(${currentZoom})`;
+      });
+      document.getElementById('zoomResetBtn').addEventListener('click', () => {
+        currentZoom = 1;
+        photoImg.style.transform = `scale(${currentZoom})`;
+      });
+      // Колесико мыши для зума
+      photoImg.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        const delta = e.deltaY > 0 ? -0.1 : 0.1;
+        currentZoom = Math.min(Math.max(currentZoom + delta, 0.5), 3);
+        photoImg.style.transform = `scale(${currentZoom})`;
+      });
+
+      // ---------- Модалка тест-драйва ----------
+      const testDriveModal = document.getElementById('testDriveModal');
+      const openTestDriveBtn = document.getElementById('testDriveBtn');
+      const closeTestDrive = testDriveModal.querySelector('.close-modal');
+      const detailTestDrive = document.getElementById('detailTestDrive');
+
+      function openTestDriveModal() {
+        testDriveModal.classList.add('active');
+      }
+      function closeTestDriveModal() {
+        testDriveModal.classList.remove('active');
+      }
+      openTestDriveBtn.addEventListener('click', openTestDriveModal);
+      closeTestDrive.addEventListener('click', closeTestDriveModal);
+      window.addEventListener('click', (e) => {
+        if (e.target === testDriveModal) closeTestDriveModal();
+      });
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && testDriveModal.classList.contains('active')) closeTestDriveModal();
+      });
+      detailTestDrive.addEventListener('click', () => {
+        closeDetailsModal();
+        openTestDriveModal();
+      });
+
+      // ---------- Отзывы ----------
+      const reviewsContainer = document.getElementById('reviewsContainer');
+      let reviews = [
+        { name: 'Артём', rating: 5, text: 'Невероятные ощущения! DAUNI GT-X — это бомба. Разгон просто сносит крышу, а дизайн притягивает взгляды.', date: '02.04.2025' },
+        { name: 'Екатерина', rating: 5, text: 'Очень довольна покупкой SAVAGE. Комфорт, безопасность, проходимость — всё на высоте. Семья в восторге.', date: '15.03.2025' },
+        { name: 'Дмитрий', rating: 4, text: 'E-THUNDER — мощь и тишина. Единственное, зарядка быстрее бы не помешала, но в остальном идеально.', date: '28.02.2025' }
+      ];
+
+      function renderReviews() {
+        reviewsContainer.innerHTML = reviews.map(r => `
+          <div class="review-card animate-on-scroll">
+            <div class="stars">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</div>
+            <div class="text">${r.text}</div>
+            <div class="author">${r.name}</div>
+            <div class="date">${r.date || 'недавно'}</div>
+          </div>
+        `).join('');
+        // Перезапустить анимацию для новых карточек
+        observeAnimatedElements();
+      }
+      renderReviews();
+
+      // Форма отзыва
+      const reviewForm = document.getElementById('reviewForm');
+      const starElements = document.querySelectorAll('.star-rating .star');
+      let selectedRating = 0;
+
+      starElements.forEach(star => {
+        star.addEventListener('click', function() {
+          selectedRating = parseInt(this.dataset.value);
+          starElements.forEach(s => s.classList.toggle('active', parseInt(s.dataset.value) <= selectedRating));
+        });
+        star.addEventListener('mouseenter', function() {
+          const val = parseInt(this.dataset.value);
+          starElements.forEach(s => s.classList.toggle('active', parseInt(s.dataset.value) <= val));
+        });
+        star.addEventListener('mouseleave', function() {
+          starElements.forEach(s => s.classList.toggle('active', parseInt(s.dataset.value) <= selectedRating));
+        });
+      });
+
+      reviewForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('reviewName').value.trim();
+        const text = document.getElementById('reviewText').value.trim();
+        if (!name || !text || selectedRating === 0) {
+          alert('Заполните все поля и поставьте оценку.');
           return;
         }
-        alert('Ты че реально ввел данные? это шутка бро!');
-        closeModal();
-        // Очистка полей
-        document.getElementById('cardNumber').value = '';
-        document.getElementById('cardExpiry').value = '';
-        document.getElementById('cvv').value = '';
-        document.getElementById('smsCode').value = '';
+        const newReview = {
+          name: name,
+          rating: selectedRating,
+          text: text,
+          date: new Date().toLocaleDateString('ru-RU')
+        };
+        reviews.unshift(newReview);
+        renderReviews();
+        this.reset();
+        selectedRating = 0;
+        starElements.forEach(s => s.classList.remove('active'));
+        alert('Спасибо за ваш отзыв!');
       });
+
+      // ---------- FAQ аккордеон ----------
+      document.querySelectorAll('.faq-question').forEach(q => {
+        q.addEventListener('click', function() {
+          const item = this.parentElement;
+          const isActive = item.classList.contains('active');
+          // Закрываем все
+          document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+          if (!isActive) {
+            item.classList.add('active');
+          }
+        });
+      });
+
+      // ---------- Анимация при скролле (Intersection Observer) ----------
+      function observeAnimatedElements() {
+        const elements = document.querySelectorAll('.animate-on-scroll');
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        }, { threshold: 0.1 });
+        elements.forEach(el => observer.observe(el));
+      }
+      observeAnimatedElements();
+
+      // ---------- Клик по картинке в модалке деталей для открытия фото ----------
+      detailImage.addEventListener('click', function() {
+        const bg = getComputedStyle(this).backgroundImage;
+        const url = bg.replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
+        if (url) openPhotoModal(url);
+      });
+
     })();
   </script>
 </body>
