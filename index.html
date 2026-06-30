@@ -364,6 +364,27 @@
     .model-img:hover {
       transform: scale(1.03);
     }
+    /* Плашка в углу изображения */
+    .model-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 2;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      padding: 4px 14px;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #c9a84c;
+      border: 1px solid #c9a84c;
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+    }
     .model-info {
       padding: 24px;
     }
@@ -380,18 +401,6 @@
     .model-info .btn {
       padding: 10px 24px;
       font-size: 0.8rem;
-    }
-    .model-badge {
-      display: inline-block;
-      background: #c9a84c;
-      color: #0a0a0a;
-      font-size: 0.7rem;
-      font-weight: 700;
-      padding: 2px 10px;
-      border-radius: 20px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-top: 6px;
     }
 
     /* Отзывы */
@@ -927,46 +936,55 @@
       color: #c9a84c;
     }
 
-    /* Cookie-плашка */
+    /* Cookie-уведомление — компактное окошко в углу */
     .cookie-banner {
       position: fixed;
-      bottom: 0;
-      left: 0;
+      bottom: 30px;
+      right: 30px;
+      max-width: 360px;
       width: 100%;
-      background: rgba(10,10,10,0.95);
-      backdrop-filter: blur(8px);
-      border-top: 1px solid #c9a84c;
-      padding: 16px 20px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid #c9a84c;
+      border-radius: 12px;
+      padding: 20px 24px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
       z-index: 300;
       font-size: 0.9rem;
       color: #ccc;
-      transition: transform 0.4s ease;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+      transform: translateY(0);
+      opacity: 1;
     }
     .cookie-banner.hidden {
-      transform: translateY(100%);
+      transform: translateY(20px);
+      opacity: 0;
+      pointer-events: none;
+    }
+    .cookie-banner .cookie-text {
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+    .cookie-banner .cookie-text a {
+      color: #c9a84c;
+      text-decoration: underline;
     }
     .cookie-banner .cookie-btn {
       background: #c9a84c;
       border: none;
       color: #0a0a0a;
       font-weight: 700;
-      padding: 8px 24px;
+      padding: 8px 28px;
       border-radius: 4px;
       cursor: pointer;
       font-size: 0.9rem;
       transition: 0.2s;
-      white-space: nowrap;
+      width: 100%;
+      text-align: center;
     }
     .cookie-banner .cookie-btn:hover {
       background: #b3923e;
-    }
-    .cookie-banner a {
-      color: #c9a84c;
     }
 
     @keyframes fadeInUp {
@@ -1069,6 +1087,19 @@
       .footer-links {
         gap: 15px;
       }
+      .model-badge {
+        font-size: 0.6rem;
+        padding: 3px 10px;
+        top: 8px;
+        right: 8px;
+      }
+      .cookie-banner {
+        bottom: 20px;
+        right: 20px;
+        max-width: 300px;
+        padding: 16px 18px;
+        font-size: 0.8rem;
+      }
     }
 
     @media (max-width: 480px) {
@@ -1084,6 +1115,21 @@
       }
       .hero h1 {
         font-size: 2.5rem;
+      }
+      .model-badge {
+        font-size: 0.55rem;
+        padding: 2px 8px;
+        top: 6px;
+        right: 6px;
+      }
+      .cookie-banner {
+        bottom: 16px;
+        right: 16px;
+        left: 16px;
+        max-width: none;
+        width: auto;
+        padding: 14px 16px;
+        border-radius: 10px;
       }
     }
   </style>
@@ -1170,29 +1216,32 @@
         <p class="section-sub animate-on-scroll">Выбери своего зверя.</p>
         <div class="models-grid">
           <div class="model-item animate-on-scroll" data-model="gtx">
-            <div class="model-img" style="background-image: url('DauniGTX.png');"></div>
+            <div class="model-img" style="background-image: url('DauniGTX.png');">
+              <span class="model-badge">Электрический</span>
+            </div>
             <div class="model-info">
               <h4>DAUNI GT-X</h4>
               <p>Спортивное купе. 0-100 за 3.8 сек. Максимальная дерзость.</p>
-              <span class="model-badge">электрический</span>
               <button class="btn details-btn" data-model="gtx" style="margin-top:10px;">Подробнее</button>
             </div>
           </div>
           <div class="model-item animate-on-scroll" data-model="savage">
-            <div class="model-img" style="background-image: url('DauniSAVAGE.jpeg');"></div>
+            <div class="model-img" style="background-image: url('DauniSAVAGE.jpeg');">
+              <span class="model-badge">Гибридный</span>
+            </div>
             <div class="model-info">
               <h4>DAUNI SAVAGE</h4>
               <p>Внедорожник с характером. Полный привод, клиренс 240 мм.</p>
-              <span class="model-badge">гибридный</span>
               <button class="btn details-btn" data-model="savage" style="margin-top:10px;">Подробнее</button>
             </div>
           </div>
           <div class="model-item animate-on-scroll" data-model="ethunder">
-            <div class="model-img" style="background-image: url('DauniETHUNDER.jpeg');"></div>
+            <div class="model-img" style="background-image: url('DauniETHUNDER.jpeg');">
+              <span class="model-badge">Электрический</span>
+            </div>
             <div class="model-info">
               <h4>DAUNI E-THUNDER</h4>
               <p>Электрический монстр. 700 л.с., запас хода 610 км. Тишина перед бурей.</p>
-              <span class="model-badge">электрический</span>
               <button class="btn details-btn" data-model="ethunder" style="margin-top:10px;">Подробнее</button>
             </div>
           </div>
@@ -1426,9 +1475,11 @@
     </div>
   </div>
 
-  <!-- Cookie-плашка -->
+  <!-- Cookie-уведомление (компактное окошко) -->
   <div id="cookieBanner" class="cookie-banner">
-    <span>Мы используем файлы cookie для улучшения работы сайта. Продолжая использовать сайт, вы соглашаетесь с <a href="#">политикой обработки данных</a>.</span>
+    <div class="cookie-text">
+      Мы используем файлы cookie для улучшения работы сайта. Продолжая использовать сайт, вы соглашаетесь с <a href="#">политикой обработки данных</a>.
+    </div>
     <button class="cookie-btn" id="cookieAcceptBtn">Принять</button>
   </div>
 
@@ -1855,7 +1906,7 @@
       }
       observeAnimatedElements();
 
-      // ---------- Cookie-плашка ----------
+      // ---------- Cookie-уведомление (компактное окошко) ----------
       const cookieBanner = document.getElementById('cookieBanner');
       const cookieAcceptBtn = document.getElementById('cookieAcceptBtn');
       if (!getCookie('cookies_accepted')) {
