@@ -540,8 +540,8 @@
       flex: 0 0 100%;
       height: 100%;
       display: flex;
-      align-items: center;
-      padding: 0 30px;
+      align-items: flex-end;
+      padding: 0 30px 50px;
       background-size: cover;
       background-position: center;
       background-color: #1c1c1c;
@@ -554,7 +554,7 @@
       left: 0;
       width: 100%;
       height: 60%;
-      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
       pointer-events: none;
     }
     .blog-slide-content {
@@ -562,7 +562,6 @@
       z-index: 2;
       max-width: 600px;
       color: #fff;
-      padding-bottom: 40px;
     }
     .blog-slide-content h3 {
       font-size: 2rem;
@@ -582,38 +581,62 @@
       letter-spacing: 1px;
     }
 
-    /* Кнопки карусели */
-    .carousel-btn {
+    /* Кнопки карусели — в правом нижнем углу */
+    .carousel-controls {
       position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
+      bottom: 20px;
+      right: 20px;
       z-index: 10;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .carousel-btn {
       background: rgba(0,0,0,0.6);
       border: 1px solid #c9a84c;
       color: #c9a84c;
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      border-radius: 4px;
       cursor: pointer;
-      font-size: 1.8rem;
+      font-size: 1.2rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: background 0.2s, color 0.2s;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
       backdrop-filter: blur(4px);
+      user-select: none;
     }
     .carousel-btn:hover {
       background: #c9a84c;
       color: #0a0a0a;
+      transform: scale(1.05);
     }
-    .carousel-btn.prev {
-      left: 16px;
-    }
-    .carousel-btn.next {
-      right: 16px;
+    .carousel-btn:active {
+      transform: scale(0.95);
     }
 
-    /* Индикаторы (линии) */
+    /* Счётчик слайдов — в левом нижнем углу */
+    .carousel-counter {
+      position: absolute;
+      bottom: 28px;
+      left: 30px;
+      z-index: 10;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      background: rgba(0,0,0,0.5);
+      padding: 6px 16px;
+      border-radius: 4px;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(201,168,76,0.3);
+    }
+    .carousel-counter span {
+      color: #c9a84c;
+    }
+
+    /* Индикаторы (линии) — внизу по центру */
     .carousel-indicators {
       position: absolute;
       bottom: 20px;
@@ -879,7 +902,7 @@
       font-weight: 600;
     }
 
-    /* Модалка просмотра фото */
+    /* Модалка просмотра фото — улучшенный внешний вид */
     .photo-modal .modal-content {
       max-width: 95vw;
       max-height: 95vh;
@@ -903,21 +926,31 @@
       position: fixed;
       top: 20px;
       right: 30px;
-      font-size: 40px;
-      color: #fff;
-      background: rgba(0,0,0,0.5);
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
+      font-size: 1.6rem;
+      color: #c9a84c;
+      background: rgba(0,0,0,0.6);
+      border: 1px solid #c9a84c;
+      border-radius: 8px;
+      width: 44px;
+      height: 44px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid #c9a84c;
       z-index: 210;
+      backdrop-filter: blur(8px);
+      transition: background 0.3s, color 0.3s, transform 0.2s;
+      cursor: pointer;
+      font-weight: 300;
+      line-height: 1;
+      padding: 0;
     }
     .photo-modal .modal-content .close-modal:hover {
-      color: #c9a84c;
-      background: rgba(0,0,0,0.8);
+      background: #c9a84c;
+      color: #0a0a0a;
+      transform: scale(1.08);
+    }
+    .photo-modal .modal-content .close-modal:active {
+      transform: scale(0.95);
     }
     .photo-modal .modal-content .zoom-controls {
       position: fixed;
@@ -931,6 +964,7 @@
       border-radius: 40px;
       border: 1px solid #c9a84c;
       z-index: 210;
+      backdrop-filter: blur(4px);
     }
     .photo-modal .modal-content .zoom-controls button {
       background: none;
@@ -1168,11 +1202,11 @@
         max-height: 70vh;
       }
       .photo-modal .modal-content .close-modal {
-        top: 10px;
-        right: 10px;
-        width: 40px;
-        height: 40px;
-        font-size: 30px;
+        top: 16px;
+        right: 16px;
+        width: 38px;
+        height: 38px;
+        font-size: 1.3rem;
       }
       .photo-modal .modal-content .zoom-controls {
         bottom: 20px;
@@ -1195,15 +1229,15 @@
         font-size: 1rem;
       }
       .carousel-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 1.4rem;
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
       }
-      .carousel-btn.prev {
-        left: 10px;
-      }
-      .carousel-btn.next {
-        right: 10px;
+      .carousel-counter {
+        font-size: 0.8rem;
+        padding: 4px 12px;
+        bottom: 24px;
+        left: 20px;
       }
       .carousel-indicators .indicator {
         width: 30px;
@@ -1283,9 +1317,15 @@
         font-size: 0.9rem;
       }
       .carousel-btn {
-        width: 34px;
-        height: 34px;
-        font-size: 1.2rem;
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+      }
+      .carousel-counter {
+        font-size: 0.7rem;
+        padding: 3px 10px;
+        bottom: 20px;
+        left: 16px;
       }
       .carousel-indicators .indicator {
         width: 24px;
@@ -1523,11 +1563,18 @@
             </div>
           </div>
 
-          <!-- Кнопки управления -->
-          <button class="carousel-btn prev" id="carouselPrev"><i class="bi bi-chevron-left"></i></button>
-          <button class="carousel-btn next" id="carouselNext"><i class="bi bi-chevron-right"></i></button>
+          <!-- Счётчик слайдов (левый нижний угол) -->
+          <div class="carousel-counter" id="carouselCounter">
+            <span id="currentSlideNum">1</span> / <span id="totalSlidesNum">5</span>
+          </div>
 
-          <!-- Индикаторы (линии) -->
+          <!-- Кнопки управления (правый нижний угол) -->
+          <div class="carousel-controls">
+            <button class="carousel-btn" id="carouselPrev"><i class="bi bi-chevron-left"></i></button>
+            <button class="carousel-btn" id="carouselNext"><i class="bi bi-chevron-right"></i></button>
+          </div>
+
+          <!-- Индикаторы (линии внизу по центру) -->
           <div class="carousel-indicators" id="carouselIndicators">
             <!-- Генерируются JS -->
           </div>
@@ -1630,7 +1677,7 @@
     </section>
   </main>
 
-  <!-- Модальные окна (без изменений) -->
+  <!-- Модальные окна -->
   <div id="detailsModal" class="modal">
     <div class="modal-content large">
       <button class="close-modal">&times;</button>
@@ -2142,9 +2189,14 @@
       const totalSlides = slides.length;
       let currentIndex = 0;
       let autoSlideInterval = null;
-      const intervalTime = 5000; // 5 сек
+      const intervalTime = 5000;
 
-      // Создаём индикаторы
+      // Счётчик
+      const currentSlideNum = document.getElementById('currentSlideNum');
+      const totalSlidesNum = document.getElementById('totalSlidesNum');
+      totalSlidesNum.textContent = totalSlides;
+
+      // Индикаторы
       const indicatorsContainer = document.getElementById('carouselIndicators');
       indicatorsContainer.innerHTML = '';
       for (let i = 0; i < totalSlides; i++) {
@@ -2164,17 +2216,13 @@
         document.querySelectorAll('.indicator').forEach((dot, i) => {
           dot.classList.toggle('active', i === currentIndex);
         });
+        // Обновить счётчик
+        currentSlideNum.textContent = currentIndex + 1;
       }
 
-      function nextSlide() {
-        goToSlide(currentIndex + 1);
-      }
+      function nextSlide() { goToSlide(currentIndex + 1); }
+      function prevSlide() { goToSlide(currentIndex - 1); }
 
-      function prevSlide() {
-        goToSlide(currentIndex - 1);
-      }
-
-      // Кнопки
       document.getElementById('carouselNext').addEventListener('click', () => {
         nextSlide();
         resetAutoSlide();
@@ -2184,7 +2232,6 @@
         resetAutoSlide();
       });
 
-      // Автопрокрутка
       function startAutoSlide() {
         if (autoSlideInterval) clearInterval(autoSlideInterval);
         autoSlideInterval = setInterval(nextSlide, intervalTime);
@@ -2197,7 +2244,6 @@
         }
       }
 
-      // Остановка при наведении
       const carouselWrapper = document.querySelector('.blog-carousel-wrapper');
       carouselWrapper.addEventListener('mouseenter', () => {
         if (autoSlideInterval) {
@@ -2207,11 +2253,9 @@
       });
       carouselWrapper.addEventListener('mouseleave', startAutoSlide);
 
-      // Старт карусели
       goToSlide(0);
       startAutoSlide();
 
-      // Для мобильных: касание для остановки
       carouselWrapper.addEventListener('touchstart', () => {
         if (autoSlideInterval) {
           clearInterval(autoSlideInterval);
