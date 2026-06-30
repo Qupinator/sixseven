@@ -42,6 +42,7 @@
 
     ::-webkit-scrollbar {
       width: 6px;
+      height: 6px;
     }
     ::-webkit-scrollbar-track {
       background: #1a1a1a;
@@ -92,7 +93,7 @@
       gap: 10px;
     }
 
-    .logo-img  {
+    .logo-img {
       width: 40px;
       height: 40px;
       background-size: cover;
@@ -328,6 +329,38 @@
       color: #aaa;
     }
 
+    /* Статистика */
+    .stats {
+      padding: 80px 0;
+      background: #0a0a0a;
+      border-top: 1px solid #222;
+      border-bottom: 1px solid #222;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 40px;
+      text-align: center;
+    }
+    .stat-item .stat-number {
+      font-size: 3.2rem;
+      font-weight: 900;
+      color: #c9a84c;
+      letter-spacing: 2px;
+    }
+    .stat-item .stat-label {
+      font-size: 1rem;
+      color: #999;
+      margin-top: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .stat-item .stat-icon {
+      font-size: 2.4rem;
+      color: #c9a84c;
+      margin-bottom: 10px;
+    }
+
     /* Модели */
     .models {
       padding: 100px 0;
@@ -364,7 +397,6 @@
     .model-img:hover {
       transform: scale(1.03);
     }
-    /* Плашка в углу изображения */
     .model-badge {
       position: absolute;
       top: 12px;
@@ -484,17 +516,38 @@
       display: block;
     }
 
-    /* Блог */
+    /* Блог — компактная карусель */
     .blog {
-      padding: 100px 0;
+      padding: 80px 0;
       background: #0d0d0d;
     }
+    .blog-carousel-wrapper {
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+      padding-bottom: 10px;
+      margin: 0 -8px;
+    }
+    .blog-carousel-wrapper::-webkit-scrollbar {
+      height: 6px;
+    }
+    .blog-carousel-wrapper::-webkit-scrollbar-track {
+      background: #1a1a1a;
+      border-radius: 3px;
+    }
+    .blog-carousel-wrapper::-webkit-scrollbar-thumb {
+      background: #c9a84c;
+      border-radius: 3px;
+    }
     .blog-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 20px;
+      padding: 0 8px;
     }
     .blog-card {
+      flex: 0 0 280px;
       background: #141414;
       border: 1px solid #2a2a2a;
       border-radius: 8px;
@@ -506,27 +559,28 @@
       border-color: #c9a84c;
     }
     .blog-card .blog-img {
-      height: 200px;
+      height: 140px;
       background-size: cover;
       background-position: center;
       background-color: #1c1c1c;
     }
     .blog-card .blog-content {
-      padding: 20px;
+      padding: 14px 16px;
     }
     .blog-card .blog-content h4 {
-      font-size: 1.3rem;
+      font-size: 1.1rem;
       color: #fff;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
+      line-height: 1.3;
     }
     .blog-card .blog-content p {
       color: #aaa;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
     }
     .blog-card .blog-content .blog-date {
       color: #777;
-      font-size: 0.8rem;
-      margin-top: 12px;
+      font-size: 0.75rem;
     }
 
     /* О нас */
@@ -605,7 +659,7 @@
       padding: 16px 20px 8px;
     }
 
-    /* Соцсети (новый блок) */
+    /* Соцсети */
     .social-block {
       padding: 60px 0;
       background: #0a0a0a;
@@ -768,7 +822,7 @@
       font-weight: 600;
     }
 
-    /* Модалка просмотра фото (переделана) */
+    /* Модалка просмотра фото */
     .photo-modal .modal-content {
       max-width: 95vw;
       max-height: 95vh;
@@ -1073,8 +1127,11 @@
       .reviews-grid {
         grid-template-columns: 1fr;
       }
-      .blog-grid {
-        grid-template-columns: 1fr;
+      .blog-card {
+        flex: 0 0 240px;
+      }
+      .blog-card .blog-img {
+        height: 120px;
       }
       .mobile-menu a {
         font-size: 1.2rem;
@@ -1099,6 +1156,13 @@
         max-width: 300px;
         padding: 16px 18px;
         font-size: 0.8rem;
+      }
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+      }
+      .stat-item .stat-number {
+        font-size: 2.6rem;
       }
     }
 
@@ -1131,6 +1195,19 @@
         padding: 14px 16px;
         border-radius: 10px;
       }
+      .blog-card {
+        flex: 0 0 200px;
+      }
+      .blog-card .blog-img {
+        height: 100px;
+      }
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .stat-item .stat-number {
+        font-size: 2.2rem;
+      }
     }
   </style>
 </head>
@@ -1141,6 +1218,7 @@
       <nav class="nav">
         <a href="#hero">Главная</a>
         <a href="#features">Преимущества</a>
+        <a href="#stats">Статистика</a>
         <a href="#models">Модели</a>
         <a href="#reviews">Отзывы</a>
         <a href="#blog">Блог</a>
@@ -1160,6 +1238,7 @@
     <button class="close-mobile" id="closeMobile">&times;</button>
     <a href="#hero">Главная</a>
     <a href="#features">Преимущества</a>
+    <a href="#stats">Статистика</a>
     <a href="#models">Модели</a>
     <a href="#reviews">Отзывы</a>
     <a href="#blog">Блог</a>
@@ -1204,6 +1283,35 @@
             <div class="feature-icon"><i class="bi bi-moon-stars-fill"></i></div>
             <h3>Тёмная эстетика</h3>
             <p>Эксклюзивные чёрные пакеты, матовые покрытия и отсутствие хрома — только брутальность.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Статистика -->
+    <section id="stats" class="stats">
+      <div class="container">
+        <h2 class="section-title animate-on-scroll" style="font-size:2.4rem;">DAUNI <span>В ЦИФРАХ</span></h2>
+        <div class="stats-grid">
+          <div class="stat-item animate-on-scroll">
+            <div class="stat-icon"><i class="bi bi-car-front-fill"></i></div>
+            <div class="stat-number" data-count="1520">0</div>
+            <div class="stat-label">Автомобилей продано</div>
+          </div>
+          <div class="stat-item animate-on-scroll">
+            <div class="stat-icon"><i class="bi bi-speedometer2"></i></div>
+            <div class="stat-number" data-count="610">0</div>
+            <div class="stat-label">Макс. запас хода, км</div>
+          </div>
+          <div class="stat-item animate-on-scroll">
+            <div class="stat-icon"><i class="bi bi-calendar3"></i></div>
+            <div class="stat-number" data-count="5">0</div>
+            <div class="stat-label">Лет на рынке</div>
+          </div>
+          <div class="stat-item animate-on-scroll">
+            <div class="stat-icon"><i class="bi bi-geo-alt-fill"></i></div>
+            <div class="stat-number" data-count="48">0</div>
+            <div class="stat-label">Дилерских центров</div>
           </div>
         </div>
       </div>
@@ -1273,34 +1381,52 @@
       </div>
     </section>
 
-    <!-- Блог -->
+    <!-- Блог — компактная карусель -->
     <section id="blog" class="blog">
       <div class="container">
         <h2 class="section-title animate-on-scroll">БЛОГ <span>И НОВОСТИ</span></h2>
         <p class="section-sub animate-on-scroll">Следите за обновлениями</p>
-        <div class="blog-grid" id="blogContainer">
-          <div class="blog-card animate-on-scroll">
-            <div class="blog-img" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 200%22><rect width=%22400%22 height=%22200%22 fill=%22%231c1c1c%22/><text x=%2250%22 y=%22120%22 fill=%22%23c9a84c%22 font-size=%2230%22 font-family=%22Montserrat%22>Новость 1</text></svg>');"></div>
-            <div class="blog-content">
-              <h4>DAUNI GT-X получил обновление</h4>
-              <p>Увеличенная мощность и новый аэродинамический обвес.</p>
-              <div class="blog-date">12 марта 2025</div>
+        <div class="blog-carousel-wrapper animate-on-scroll">
+          <div class="blog-grid">
+            <div class="blog-card">
+              <div class="blog-img" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 200%22><rect width=%22400%22 height=%22200%22 fill=%22%231c1c1c%22/><text x=%2250%22 y=%22120%22 fill=%22%23c9a84c%22 font-size=%2230%22 font-family=%22Montserrat%22>Новость 1</text></svg>');"></div>
+              <div class="blog-content">
+                <h4>DAUNI GT-X получил обновление</h4>
+                <p>Увеличенная мощность и новый обвес.</p>
+                <div class="blog-date">12 марта 2025</div>
+              </div>
             </div>
-          </div>
-          <div class="blog-card animate-on-scroll">
-            <div class="blog-img" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 200%22><rect width=%22400%22 height=%22200%22 fill=%22%231c1c1c%22/><text x=%2250%22 y=%22120%22 fill=%22%23c9a84c%22 font-size=%2230%22 font-family=%22Montserrat%22>Новость 2</text></svg>');"></div>
-            <div class="blog-content">
-              <h4>Запуск новой зарядной сети</h4>
-              <p>DAUNI открывает 50 сверхбыстрых станций по всей России.</p>
-              <div class="blog-date">5 апреля 2025</div>
+            <div class="blog-card">
+              <div class="blog-img" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 200%22><rect width=%22400%22 height=%22200%22 fill=%22%231c1c1c%22/><text x=%2250%22 y=%22120%22 fill=%22%23c9a84c%22 font-size=%2230%22 font-family=%22Montserrat%22>Новость 2</text></svg>');"></div>
+              <div class="blog-content">
+                <h4>Запуск новой зарядной сети</h4>
+                <p>50 быстрых станций по России.</p>
+                <div class="blog-date">5 апреля 2025</div>
+              </div>
             </div>
-          </div>
-          <div class="blog-card animate-on-scroll">
-            <div class="blog-img" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 200%22><rect width=%22400%22 height=%22200%22 fill=%22%231c1c1c%22/><text x=%2250%22 y=%22120%22 fill=%22%23c9a84c%22 font-size=%2230%22 font-family=%22Montserrat%22>Новость 3</text></svg>');"></div>
-            <div class="blog-content">
-              <h4>DAUNI SAVAGE признан лучшим внедорожником 2025</h4>
-              <p>Премия «Золотой руль» за инновации и проходимость.</p>
-              <div class="blog-date">20 февраля 2025</div>
+            <div class="blog-card">
+              <div class="blog-img" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 200%22><rect width=%22400%22 height=%22200%22 fill=%22%231c1c1c%22/><text x=%2250%22 y=%22120%22 fill=%22%23c9a84c%22 font-size=%2230%22 font-family=%22Montserrat%22>Новость 3</text></svg>');"></div>
+              <div class="blog-content">
+                <h4>DAUNI SAVAGE — лучший внедорожник 2025</h4>
+                <p>Премия «Золотой руль».</p>
+                <div class="blog-date">20 февраля 2025</div>
+              </div>
+            </div>
+            <div class="blog-card">
+              <div class="blog-img" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 200%22><rect width=%22400%22 height=%22200%22 fill=%22%231c1c1c%22/><text x=%2250%22 y=%22120%22 fill=%22%23c9a84c%22 font-size=%2230%22 font-family=%22Montserrat%22>Новость 4</text></svg>');"></div>
+              <div class="blog-content">
+                <h4>Новый цвет кузова — «Ночной хищник»</h4>
+                <p>Эксклюзивный матовый чёрный.</p>
+                <div class="blog-date">10 января 2025</div>
+              </div>
+            </div>
+            <div class="blog-card">
+              <div class="blog-img" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 200%22><rect width=%22400%22 height=%22200%22 fill=%22%231c1c1c%22/><text x=%2250%22 y=%22120%22 fill=%22%23c9a84c%22 font-size=%2230%22 font-family=%22Montserrat%22>Новость 5</text></svg>');"></div>
+              <div class="blog-content">
+                <h4>DAUNI участвует в автосалоне в Женеве</h4>
+                <p>Премьера концепт-кара.</p>
+                <div class="blog-date">5 декабря 2024</div>
+              </div>
             </div>
           </div>
         </div>
@@ -1905,6 +2031,33 @@
         elements.forEach(el => observer.observe(el));
       }
       observeAnimatedElements();
+
+      // ---------- Анимация счётчиков статистики ----------
+      function animateCounters() {
+        const statNumbers = document.querySelectorAll('.stat-number');
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const el = entry.target;
+              const target = parseInt(el.dataset.count);
+              if (isNaN(target)) return;
+              let current = 0;
+              const step = Math.ceil(target / 40);
+              const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                  current = target;
+                  clearInterval(timer);
+                }
+                el.textContent = current;
+              }, 25);
+              observer.unobserve(el);
+            }
+          });
+        }, { threshold: 0.3 });
+        statNumbers.forEach(el => observer.observe(el));
+      }
+      animateCounters();
 
       // ---------- Cookie-уведомление (компактное окошко) ----------
       const cookieBanner = document.getElementById('cookieBanner');
