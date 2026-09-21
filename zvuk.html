@@ -1,0 +1,2487 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>DAUNI — студия озвучивания</title>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Montserrat:wght@700;800;900&display=swap"
+		rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+	<style>
+		/* ===== CSS Variables ===== */
+		:root {
+			--bg-primary: #0b0b0b;
+			--bg-secondary: #141414;
+			--bg-card: #1c1c1c;
+			--text-primary: #f5f5f5;
+			--text-secondary: #a8a8a8;
+			--text-muted: #6e6e6e;
+			--gold: #c9a84c;
+			--gold-glow: rgba(201, 168, 76, 0.25);
+			--border-radius: 16px;
+			--transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+			--glass-bg: rgba(255, 255, 255, 0.06);
+			--glass-border: rgba(255, 255, 255, 0.08);
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			font-family: 'Inter', sans-serif;
+			background: var(--bg-primary);
+			color: var(--text-primary);
+			line-height: 1.6;
+			scroll-behavior: smooth;
+		}
+
+		a {
+			color: inherit;
+			text-decoration: none;
+		}
+
+		.container {
+			max-width: 1280px;
+			margin: 0 auto;
+			padding: 0 16px;
+		}
+
+		::-webkit-scrollbar {
+			width: 6px;
+		}
+		::-webkit-scrollbar-track {
+			background: var(--bg-secondary);
+		}
+		::-webkit-scrollbar-thumb {
+			background: var(--gold);
+			border-radius: 10px;
+		}
+
+		/* ===== Glassmorphism Button ===== */
+		.btn-glass {
+			display: inline-block;
+			padding: 10px 28px;
+			background: var(--glass-bg);
+			backdrop-filter: blur(8px);
+			-webkit-backdrop-filter: blur(8px);
+			border: 1px solid var(--glass-border);
+			border-radius: var(--border-radius);
+			color: var(--text-primary);
+			font-weight: 600;
+			font-size: 0.9rem;
+			letter-spacing: 0.02em;
+			transition: all var(--transition);
+			cursor: pointer;
+			font-family: 'Inter', sans-serif;
+			text-transform: uppercase;
+			text-wrap: nowrap;
+		}
+		.btn-glass:hover {
+			background: var(--gold);
+			color: #0b0b0b;
+			border-color: var(--gold);
+			box-shadow: 0 0 30px var(--gold-glow);
+		}
+		.btn-glass-gold {
+			background: var(--gold);
+			color: #0b0b0b;
+			border-color: var(--gold);
+		}
+		.btn-glass-gold:hover {
+			background: transparent;
+			color: var(--gold);
+			box-shadow: 0 0 30px var(--gold-glow);
+		}
+
+		/* ===== HEADER ===== */
+		.header {
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			z-index: 1000;
+			background: rgba(11, 11, 11, 0.85);
+			backdrop-filter: blur(16px);
+			-webkit-backdrop-filter: blur(16px);
+			border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+			padding: 8px 0;
+		}
+		.header .container {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			gap: 8px 12px;
+		}
+		.logo {
+			font-family: 'Montserrat', sans-serif;
+			font-weight: 900;
+			font-size: 2rem;
+			letter-spacing: -0.02em;
+			color: var(--gold);
+			text-shadow: 0 0 30px var(--gold-glow);
+			transition: font-size var(--transition);
+			flex-shrink: 0;
+		}
+		.logo-square {
+			display: none;
+			width: 40px;
+			height: 40px;
+			background: var(--gold);
+			color: #0b0b0b;
+			border-radius: 8px;
+			align-items: center;
+			justify-content: center;
+			font-weight: 900;
+			font-size: 1.4rem;
+			font-family: 'Montserrat', sans-serif;
+			flex-shrink: 0;
+		}
+		.search-wrap {
+			position: relative;
+			max-width: 250px;
+			width: 100%;
+		}
+		.search-input {
+			width: 100%;
+			padding: 6px 14px 6px 36px;
+			border-radius: 10px;
+			border: 1px solid var(--glass-border);
+			background: var(--glass-bg);
+			backdrop-filter: blur(8px);
+			color: var(--text-primary);
+			font-size: 1rem;
+			outline: none;
+			transition: border var(--transition), box-shadow var(--transition);
+			font-family: 'Inter', sans-serif;
+			height: 40px;
+		}
+		.search-input::placeholder {
+			color: var(--text-muted);
+		}
+		.search-input:focus {
+			border-color: var(--gold);
+			box-shadow: 0 0 20px var(--gold-glow);
+		}
+		.search-wrap::before {
+			content: '\f002';
+			font-family: 'Font Awesome 6 Free';
+			font-weight: 900;
+			position: absolute;
+			left: 12px;
+			top: 50%;
+			transform: translateY(-50%);
+			color: var(--text-muted);
+			font-size: 0.85rem;
+		}
+		.nav {
+			display: flex;
+			gap: 24px;
+			align-items: center;
+			flex: 0 1 auto;
+		}
+		.nav a {
+			font-weight: 500;
+			font-size: 0.95rem;
+			color: var(--text-secondary);
+			transition: color var(--transition);
+			position: relative;
+			white-space: nowrap;
+		}
+		.nav a:hover,
+		.nav a.active {
+			color: var(--gold);
+		}
+		.nav a::after {
+			content: '';
+			position: absolute;
+			bottom: -4px;
+			left: 0;
+			width: 0;
+			height: 2px;
+			background: var(--gold);
+			transition: width var(--transition);
+		}
+		.nav a:hover::after,
+		.nav a.active::after {
+			width: 100%;
+		}
+		.nav .nav-header {
+			display: none;
+			align-items: center;
+			gap: 10px;
+			padding: 8px;
+			border-radius: var(--border-radius);
+			background: var(--glass-bg);
+			border: 1px solid var(--glass-border);
+			color: var(--gold);
+			font-weight: 500;
+			width: 100%;
+			justify-content: space-between;
+		}
+		.nav .nav-header .user-info {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+		}
+		.nav .nav-header .close-menu {
+			background: transparent;
+			border: 1px solid var(--glass-border);
+			border-radius: 10px;
+			color: var(--text-primary);
+			width: 40px;
+			height: 40px;
+			color: var(--text-secondary);
+			font-size: 1rem;
+			cursor: pointer;
+			padding: 0;
+			transition: color var(--transition);
+		}
+		.nav .nav-header .close-menu:hover {
+			color: var(--gold);
+		}
+		.nav .nav-header .nav-user {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			gap: 10px;
+		}
+		.nav .nav-header .nav-user .avatar {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 40px;
+			height: 40px;
+			border: 1px solid var(--glass-border);
+			border-radius: 10px;
+		}
+		.header-actions {
+			display: flex;
+			align-items: center;
+			gap: 12px;
+			margin-left: auto;
+		}
+		.profile-icon {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 38px;
+			height: 38px;
+			border-radius: var(--border-radius);
+			background: var(--glass-bg);
+			border: 1px solid var(--glass-border);
+			color: var(--gold);
+			font-size: 1.1rem;
+			transition: all var(--transition);
+			flex-shrink: 0;
+		}
+		.profile-icon:hover {
+			background: var(--gold);
+			color: #0b0b0b;
+			border-color: var(--gold);
+			box-shadow: 0 0 25px var(--gold-glow);
+			transform: scale(1.05);
+		}
+		.burger {
+			display: none;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			gap: 5px;
+			background: transparent;
+			backdrop-filter: blur(8px);
+			border: 1px solid var(--glass-border);
+			border-radius: 10px;
+			width: 36px;
+			cursor: pointer;
+			padding: 4px;
+			flex-shrink: 0;
+			width: 40px;
+			height: 40px;
+		}
+		.burger span {
+			display: block;
+			width: 20px;
+			height: 2px;
+			background: var(--text-primary);
+			transition: var(--transition);
+			border-radius: 2px;
+		}
+		.burger.active span:nth-child(1) {
+			transform: rotate(45deg) translate(5px, 5px);
+		}
+		.burger.active span:nth-child(2) {
+			opacity: 0;
+		}
+		.burger.active span:nth-child(3) {
+			transform: rotate(-45deg) translate(5px, -5px);
+		}
+
+		/* ===== HERO (единый слайдер) ===== */
+		.hero {
+			margin-top: 72px;
+			padding: 20px 0 10px;
+		}
+		.hero-slider {
+			position: relative;
+			height: 550px;
+			border-radius: var(--border-radius);
+			overflow: hidden;
+			background: var(--bg-secondary);
+			box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+		}
+		.hero-slides {
+			display: flex;
+			transition: transform 0.6s ease;
+			height: 100%;
+		}
+		.hero-slide {
+			min-width: 100%;
+			height: 100%;
+			display: flex;
+			align-items: end;
+			padding: 45px 50px;
+			position: relative;
+			background-size: cover;
+			background-position: center;
+			background-color: #1a1a1a;
+		}
+		.hero-slide .slide-bg {
+			position: absolute;
+			inset: 0;
+			background-size: cover;
+			background-position: center;
+			opacity: 0.2;
+			filter: blur(2px);
+			z-index: 0;
+		}
+		.hero-slide .slide-content {
+			position: relative;
+			z-index: 1;
+			max-width: 80%;
+		}
+		.hero-slide .slide-content .badge {
+			display: inline-block;
+			background: var(--gold);
+			color: #0b0b0b;
+			font-weight: 700;
+			font-size: 0.65rem;
+			padding: 2px 12px;
+			border-radius: 20px;
+			text-transform: uppercase;
+			letter-spacing: 0.05em;
+			margin-bottom: 6px;
+		}
+		.hero-slide .slide-content .row {
+			display: flex;
+			flex-direction: row;
+			gap: 10px;
+		}
+		.hero-slide .slide-content h2 {
+			font-family: 'Montserrat', sans-serif;
+			font-weight: 800;
+			font-size: 1.4rem;
+			color: var(--gold);
+			margin-bottom: 4px;
+		}
+		.hero-slide .slide-content .date {
+			font-size: 0.75rem;
+			color: var(--text-secondary);
+			margin-bottom: 6px;
+		}
+		.hero-slide .slide-content .date i {
+			color: var(--gold);
+			margin-right: 4px;
+		}
+		.hero-slide .slide-content p {
+			font-size: 0.9rem;
+			color: var(--text-secondary);
+			margin-bottom: 10px;
+			display: -webkit-box;
+			-webkit-line-clamp: 2;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+		}
+		.hero-slide .slide-content .btn-glass {
+			padding: 6px 20px;
+			font-size: 0.75rem;
+		}
+		.hero-slide.ad-slide {
+			justify-content: center;
+			text-align: center;
+			background: linear-gradient(145deg, #1a1a1a, #111);
+		}
+		.hero-slide.ad-slide .ad-content {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 10px;
+		}
+		.hero-slide.ad-slide .ad-content i {
+			font-size: 3rem;
+			color: var(--gold);
+			opacity: 0.3;
+		}
+		.hero-slide.ad-slide .ad-content span {
+			font-weight: 600;
+			opacity: 0.5;
+			font-size: 1.2rem;
+		}
+		.slider-btn-group {
+			position: absolute;
+			bottom: 12px;
+			right: 12px;
+			display: flex;
+			gap: 6px;
+			z-index: 10;
+		}
+		.slider-btn {
+			background: var(--glass-bg);
+			backdrop-filter: blur(8px);
+			border: 1px solid var(--glass-border);
+			color: var(--text-primary);
+			width: 36px;
+			height: 36px;
+			font-size: 1.1rem;
+			cursor: pointer;
+			transition: all var(--transition);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-radius: 10px;
+		}
+		.slider-btn:hover {
+			background: var(--gold);
+			color: #0b0b0b;
+			border-color: var(--gold);
+			box-shadow: 0 0 30px var(--gold-glow);
+		}
+		.hero-dots {
+			position: absolute;
+			bottom: 12px;
+			left: 50%;
+			transform: translateX(-50%);
+			display: flex;
+			gap: 8px;
+			z-index: 5;
+		}
+		.hero-dots .dot {
+			width: 10px;
+			height: 10px;
+			border-radius: 30px;
+			background: rgba(255, 255, 255, 0.3);
+			cursor: pointer;
+			transition: all var(--transition);
+			border: none;
+			padding: 0;
+		}
+		.hero-dots .dot.active {
+			width: 20px;
+			background: var(--gold);
+			box-shadow: 0 0 15px var(--gold-glow);
+		}
+		.hero-dots .dot:hover {
+			background: var(--gold);
+		}
+
+		/* ===== CONTINUE WATCHING ===== */
+		.continue-watching {
+			padding: 20px 0 30px;
+		}
+		.continue-sort {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			font-size: 0.85rem;
+			color: var(--text-secondary);
+		}
+		.continue-sort label {
+			margin-right: 4px;
+			white-space: nowrap;
+		}
+		/* кастомное меню сортировки */
+		.sort-dropdown {
+			position: relative;
+			display: inline-block;
+		}
+		.sort-dropdown .dropdown-content {
+			display: none;
+			position: absolute;
+			right: 0;
+			top: 100%;
+			background: var(--bg-card);
+			border: 1px solid var(--glass-border);
+			border-radius: var(--border-radius);
+			min-width: 200px;
+			padding: 6px;
+			z-index: 20;
+			box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8);
+			margin-top: 4px;
+		}
+		.sort-dropdown .dropdown-content.show {
+			display: block;
+		}
+		.sort-dropdown .dropdown-content button {
+			display: block;
+			width: 100%;
+			padding: 8px 10px;
+			background: none;
+			border: none;
+			color: var(--text-secondary);
+			text-align: left;
+			font-size: 0.85rem;
+			font-family: 'Inter', sans-serif;
+			cursor: pointer;
+			transition: background var(--transition), color var(--transition);
+			border-radius: 10px;
+		}
+		.sort-dropdown .dropdown-content button:hover {
+			background: rgba(201, 168, 76, 0.1);
+			color: var(--gold);
+		}
+		.continue-slider {
+			position: relative;
+			overflow: hidden;
+			margin-top: 12px;
+		}
+		.continue-track {
+			display: flex;
+			gap: 16px;
+			transition: transform 0.4s ease;
+			will-change: transform;
+		}
+		.continue-item {
+			flex: 0 0 calc(25% - 12px);
+			min-width: calc(25% - 12px);
+			aspect-ratio: 16 / 9;
+			border-radius: var(--border-radius);
+			overflow: hidden;
+			position: relative;
+			background: var(--bg-card);
+			border: 1px solid transparent;
+			transition: border var(--transition), box-shadow var(--transition);
+		}
+		.continue-item:hover {
+			border-color: rgba(201, 168, 76, 0.3);
+			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+		}
+		.continue-item .poster-bg {
+			position: absolute;
+			inset: 0;
+			background-size: cover;
+			background-position: center;
+			background-color: #1a1a1a;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 3rem;
+			color: var(--gold);
+			opacity: 0.4;
+			transition: opacity var(--transition);
+		}
+		.continue-item .poster-bg i {
+			opacity: 0.6;
+		}
+		.continue-item .overlay {
+			position: absolute;
+			inset: 0;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			padding: 12px 12px 0 12px;
+			background: rgba(0, 0, 0, 0.5);
+			transition: background var(--transition);
+		}
+		@media (min-width: 769px) {
+			.continue-item .overlay {
+				background: rgba(0, 0, 0, 0.7);
+				opacity: 0;
+			}
+			.continue-item:hover .overlay {
+				opacity: 1;
+			}
+			.continue-item .poster-bg {
+				opacity: 0.8;
+			}
+			.continue-item:hover .poster-bg {
+				opacity: 0.3;
+			}
+		}
+		@media (max-width: 768px) {
+			.continue-item .overlay {
+				opacity: 1;
+				background: rgba(0, 0, 0, 0.6);
+			}
+			.continue-item .poster-bg {
+				opacity: 0.5;
+			}
+		}
+		.continue-item .top-info {
+			display: flex;
+			justify-content: space-between;
+			align-items: flex-start;
+		}
+		.continue-item .top-info .left {
+			display: flex;
+			flex-direction: column;
+			gap: 2px;
+			flex: 1;
+			min-width: 0;
+		}
+		.continue-item .top-info .left .season-ep {
+			font-size: 0.7rem;
+			font-weight: 600;
+			color: var(--gold);
+			letter-spacing: 0.02em;
+		}
+		.continue-item .top-info .left .title {
+			font-weight: 700;
+			font-size: 0.95rem;
+			color: var(--text-primary);
+			display: -webkit-box;
+			-webkit-line-clamp: 2;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+			line-height: 1.2;
+		}
+		.continue-item .top-info .menu-dots {
+			background: none;
+			border: none;
+			color: var(--text-secondary);
+			font-size: 1.4rem;
+			cursor: pointer;
+			padding: 0 4px;
+			line-height: 1;
+			transition: color var(--transition);
+			flex-shrink: 0;
+			margin-left: 8px;
+		}
+		.continue-item .top-info .menu-dots:hover {
+			color: var(--gold);
+		}
+		.custom-dropdown {
+			position: relative;
+			display: inline-block;
+		}
+		.custom-dropdown .dropdown-content {
+			display: none;
+			position: absolute;
+			right: 0;
+			top: 100%;
+			background: var(--bg-card);
+			border: 1px solid var(--glass-border);
+			border-radius: var(--border-radius);
+			min-width: 200px;
+			padding: 6px;
+			z-index: 20;
+			box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8);
+		}
+		.custom-dropdown .dropdown-content.show {
+			display: block;
+		}
+		.custom-dropdown .dropdown-content button {
+			display: block;
+			width: 100%;
+			padding: 8px 10px;
+			background: none;
+			border: none;
+			color: var(--text-secondary);
+			text-align: left;
+			font-size: 0.85rem;
+			font-family: 'Inter', sans-serif;
+			cursor: pointer;
+			transition: background var(--transition), color var(--transition);
+			border-radius: 10px;
+		}
+		.custom-dropdown .dropdown-content button:hover {
+			background: rgba(201, 168, 76, 0.1);
+			color: var(--gold);
+		}
+		.continue-item .bottom-area {
+			display: flex;
+			flex-direction: column;
+			gap: 4px;
+			padding-bottom: 0;
+		}
+		.continue-item .bottom-area .row {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+		.continue-item .bottom-area .row .btn-continue {
+			padding: 4px 12px;
+			background: rgba(201, 168, 76, 0.2);
+			border: none;
+			border-radius: 8px;
+			color: var(--gold);
+			font-weight: 600;
+			font-size: 0.75rem;
+			cursor: pointer;
+			transition: all var(--transition);
+			font-family: 'Inter', sans-serif;
+		}
+		.continue-item .bottom-area .row .btn-continue:hover {
+			background: var(--gold);
+			color: #0b0b0b;
+		}
+		.continue-item .bottom-area .row .time-ago {
+			font-size: 0.65rem;
+			color: var(--text-muted);
+		}
+		.continue-item .progress-wrap {
+			width: 100%;
+			height: 4px;
+			background: var(--bg-secondary);
+			border-radius: 0;
+			overflow: hidden;
+			margin: 0 -12px;
+			width: calc(100% + 24px);
+			position: relative;
+			left: -12px;
+		}
+		.continue-item .progress-wrap .progress-bar {
+			height: 100%;
+			background: var(--gold);
+			border-radius: 0;
+			transition: width 0.3s ease;
+		}
+		.continue-slider .slider-btn {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			background: var(--glass-bg);
+			backdrop-filter: blur(8px);
+			border: 1px solid var(--glass-border);
+			color: var(--text-primary);
+			width: 36px;
+			height: 36px;
+			border-radius: 50%;
+			font-size: 1rem;
+			cursor: pointer;
+			transition: all var(--transition);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			z-index: 10;
+			opacity: 0.7;
+		}
+		.continue-slider .slider-btn:hover {
+			background: var(--gold);
+			color: #0b0b0b;
+			border-color: var(--gold);
+			box-shadow: 0 0 20px var(--gold-glow);
+			opacity: 1;
+		}
+		.continue-slider .slider-btn.prev {
+			left: 4px;
+		}
+		.continue-slider .slider-btn.next {
+			right: 4px;
+		}
+		.continue-slider .slider-btn.hidden {
+			display: none;
+		}
+
+		/* ===== GENRES, RELEASES, SCHEDULE, FOOTER ===== */
+		.genres-sec {
+			padding: 30px 0 40px;
+		}
+		.genres-tabs {
+			display: flex;
+			gap: 12px;
+			border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+			padding-bottom: 6px;
+			margin-top: 6px;
+		}
+		.genres-tab {
+			padding: 8px 20px;
+			border-radius: var(--border-radius);
+			border: none;
+			background: transparent;
+			color: var(--text-secondary);
+			font-weight: 600;
+			font-size: 0.95rem;
+			cursor: pointer;
+			transition: all var(--transition);
+			font-family: 'Inter', sans-serif;
+		}
+		.genres-tab:hover {
+			color: var(--text-primary);
+			background: rgba(201, 168, 76, 0.1);
+		}
+		.genres-tab.active {
+			background: var(--gold);
+			color: #0b0b0b;
+			box-shadow: 0 0 30px var(--gold-glow);
+		}
+		.genres-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+			gap: 16px;
+		}
+		.genre-item {
+			background: var(--bg-card);
+			border-radius: var(--border-radius);
+			padding: 18px 14px;
+			text-align: center;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			transition: all var(--transition);
+			cursor: pointer;
+			border: 1px solid transparent;
+			position: relative;
+			overflow: hidden;
+		}
+		.genre-item:hover {
+			transform: translateY(-4px);
+			box-shadow: 0 4px 0px rgba(201, 168, 76, 0.3), 0 4px 15px rgba(201, 168, 76, 0.3);
+			border-color: rgba(201, 168, 76, 0.3);
+		}
+		.genre-item::after {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			height: 60%;
+			background: linear-gradient(to top, rgba(201, 168, 76, 0.08), transparent);
+			pointer-events: none;
+		}
+		.genre-item .name {
+			font-weight: 700;
+			font-size: 1.05rem;
+			color: var(--text-primary);
+			position: relative;
+			z-index: 1;
+		}
+		.genre-item .count {
+			font-size: 0.8rem;
+			color: var(--text-muted);
+			position: relative;
+			z-index: 1;
+		}
+		.genre-item .count i {
+			color: var(--gold);
+			margin-right: 4px;
+		}
+		.section-header {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			flex-wrap: nowrap;
+			gap: 12px;
+			margin-bottom: 24px;
+			flex-direction: row !important;
+		}
+		.section-title {
+			font-family: 'Montserrat', sans-serif;
+			font-weight: 800;
+			font-size: 2rem;
+			position: relative;
+			display: inline-block;
+			flex-wrap: wrap;
+		}
+		.section-title i {
+			color: var(--gold);
+			margin-right: 10px;
+		}
+		.section-title::after {
+			content: '';
+			position: absolute;
+			bottom: -6px;
+			left: 0;
+			width: 60%;
+			height: 3px;
+			background: var(--gold);
+		}
+		.section-actions {
+			display: flex;
+			gap: 12px;
+			align-items: center;
+		}
+		.releases {
+			padding: 40px 0 60px;
+		}
+		.releases-grid {
+			display: grid;
+			grid-template-columns: repeat(6, 1fr);
+			gap: 16px;
+			margin-top: 8px;
+		}
+		.release-card {
+			position: relative;
+			border-radius: var(--border-radius);
+			overflow: hidden;
+			background: var(--bg-card);
+			aspect-ratio: 2 / 3;
+			box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+		}
+		.release-card .poster {
+			width: 100%;
+			height: 100%;
+			background: var(--bg-secondary);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-weight: 600;
+			color: var(--text-secondary);
+			font-size: 1.2rem;
+			background: linear-gradient(145deg, #222, #111);
+		}
+		.release-card .poster i {
+			font-size: 3rem;
+			color: var(--gold);
+			opacity: 0.4;
+		}
+		.release-card .overlay {
+			position: absolute;
+			inset: 0;
+			background: rgba(0, 0, 0, 0.8);
+			backdrop-filter: blur(4px);
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			padding: 16px;
+			opacity: 0;
+			transition: opacity var(--transition);
+			pointer-events: none;
+		}
+		.release-card:hover .overlay {
+			opacity: 1;
+			pointer-events: auto;
+		}
+		.overlay .top {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+			gap: 2px;
+			width: 100%;
+		}
+		.overlay .top .episode-season {
+			font-size: 0.7rem;
+			font-weight: 600;
+			color: var(--text-muted);
+			display: flex;
+			align-items: center;
+			gap: 4px;
+			justify-content: center;
+			line-height: 1;
+		}
+		.overlay .top .episode-season i {
+			font-size: 0.7rem;
+			color: var(--gold);
+		}
+		.overlay .top .episode-season .sep {
+			color: var(--text-muted);
+			margin: 0 4px;
+		}
+		.overlay .top .time-ago {
+			font-size: 0.6rem;
+			color: var(--text-muted);
+			display: flex;
+			align-items: center;
+			gap: 4px;
+			margin-top: 2px;
+			justify-content: center;
+		}
+		.overlay .top .time-ago i {
+			font-size: 0.6rem;
+			color: var(--gold);
+		}
+		.overlay .center {
+			text-align: center;
+			margin: 8px 0;
+		}
+		.overlay .center h3 {
+			font-size: 1.1rem;
+			font-weight: 700;
+			color: #fff;
+			text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+		}
+		.overlay .footer-overlay {
+			display: flex;
+			flex-direction: column;
+			gap: 12px;
+		}
+		.overlay .details {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			gap: 2px 12px;
+			font-size: 0.7rem;
+			color: var(--text-secondary);
+		}
+		.overlay .details .item {
+			display: flex;
+			align-items: center;
+			gap: 4px;
+			line-height: 1;
+		}
+		.overlay .details .item i {
+			color: var(--gold);
+			font-size: 0.65rem;
+		}
+		.overlay .details .genres {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			gap: 4px 8px;
+			color: var(--text-muted);
+			font-size: 0.6rem;
+			line-height: 1;
+		}
+		.overlay .details .genres span+span::before {
+			content: "•";
+			margin-right: 8px;
+			color: var(--gold);
+		}
+		.overlay .bottom {
+			width: 100%;
+		}
+		.overlay .bottom .btn-watch {
+			display: block;
+			width: 100%;
+			padding: 8px 0;
+			background: rgba(201, 168, 76, 0.2);
+			backdrop-filter: blur(8px);
+			border: none;
+			border-radius: 8px;
+			color: var(--gold);
+			font-weight: 700;
+			font-size: 0.85rem;
+			text-transform: uppercase;
+			letter-spacing: 0.04em;
+			text-align: center;
+			transition: all var(--transition);
+			cursor: pointer;
+			font-family: 'Inter', sans-serif;
+		}
+		.overlay .bottom .btn-watch:hover {
+			background: var(--gold);
+			color: #0b0b0b;
+			box-shadow: 0 0 30px var(--gold-glow);
+		}
+		.overlay .bottom .btn-watch i {
+			margin-right: 6px;
+		}
+		.schedule {
+			padding: 40px 0 60px;
+			border-top: 1px solid rgba(201, 168, 76, 0.08);
+			border-bottom: 1px solid rgba(201, 168, 76, 0.08);
+		}
+		.schedule-tabs {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 8px;
+			margin-bottom: 28px;
+			border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+			padding-bottom: 12px;
+		}
+		.schedule-tab {
+			padding: 8px 18px;
+			border-radius: var(--border-radius);
+			border: none;
+			background: var(--glass-bg);
+			color: var(--text-secondary);
+			font-weight: 500;
+			font-size: 0.9rem;
+			cursor: pointer;
+			transition: all var(--transition);
+			font-family: 'Inter', sans-serif;
+		}
+		.schedule-tab:hover {
+			background: rgba(201, 168, 76, 0.2);
+			color: var(--gold);
+		}
+		.schedule-tab.active {
+			background: var(--gold);
+			color: #0b0b0b;
+			box-shadow: 0 0 30px var(--gold-glow);
+		}
+		.schedule-grid {
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			gap: 16px;
+			margin-top: 8px;
+		}
+		.schedule-item {
+			position: relative;
+			background: var(--bg-card);
+			border-radius: var(--border-radius);
+			padding: 16px;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			min-height: 160px;
+			transition: box-shadow var(--transition), transform var(--transition);
+			overflow: hidden;
+			border: 1px solid transparent;
+		}
+		.schedule-item:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 8px 30px var(--gold-glow);
+			border-color: rgba(201, 168, 76, 0.2);
+		}
+		.schedule-item .poster-bg {
+			position: absolute;
+			inset: 0;
+			background-size: cover;
+			background-position: center;
+			opacity: 0;
+			transition: opacity var(--transition);
+			background-color: var(--bg-secondary);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 4rem;
+			color: var(--gold);
+			z-index: 0;
+		}
+		.schedule-item:hover .poster-bg {
+			opacity: 0.15;
+		}
+		.schedule-item>*:not(.poster-bg) {
+			position: relative;
+			z-index: 1;
+		}
+		.schedule-item .info-top {
+			display: flex;
+			flex-direction: column;
+			gap: 4px;
+		}
+		.schedule-item .info-top .title {
+			font-weight: 700;
+			font-size: 1.05rem;
+			color: var(--text-primary);
+			line-height: 1.2;
+		}
+		.schedule-item .info-top .episode {
+			font-size: 0.8rem;
+			color: var(--text-secondary);
+		}
+		.schedule-item .info-top .episode i {
+			color: var(--gold);
+			margin-right: 4px;
+		}
+		.schedule-item .info-top .episode .duration {
+			color: var(--text-secondary);
+			background: rgba(255, 255, 255, 0.05);
+			font-size: 0.7rem;
+			padding: 3px 7px;
+			border-radius: 5px;
+			margin-left: 5px;
+		}
+		.schedule-item .info-top .meta {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 4px 12px;
+			font-size: 0.7rem;
+			color: var(--text-secondary);
+		}
+		.schedule-item .info-top .meta .item {
+			display: flex;
+			align-items: center;
+			gap: 4px;
+		}
+		.schedule-item .info-top .meta .item i {
+			color: var(--gold);
+			font-size: 0.6rem;
+		}
+		.schedule-item .info-top .genres {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 4px 8px;
+			font-size: 0.65rem;
+			color: var(--text-muted);
+		}
+		.schedule-item .info-top .genres span+span::before {
+			content: "•";
+			margin-right: 8px;
+			color: var(--gold);
+		}
+		.schedule-item .info-bottom {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-top: 8px;
+			gap: 12px;
+		}
+		.schedule-item .info-bottom .btn-watch {
+			flex: 1;
+			padding: 8px 0;
+			background: rgba(201, 168, 76, 0.2);
+			backdrop-filter: blur(8px);
+			border: none;
+			border-radius: 8px;
+			color: var(--gold);
+			font-weight: 700;
+			font-size: 0.8rem;
+			text-transform: uppercase;
+			letter-spacing: 0.04em;
+			text-align: center;
+			transition: all var(--transition);
+			cursor: pointer;
+			font-family: 'Inter', sans-serif;
+		}
+		.schedule-item .info-bottom .btn-watch:hover:not(:disabled) {
+			background: var(--gold);
+			color: #0b0b0b;
+			box-shadow: 0 0 30px var(--gold-glow);
+		}
+		.schedule-item .info-bottom .btn-watch:disabled {
+			opacity: 0.6;
+			cursor: not-allowed;
+			background: rgba(255, 255, 255, 0.05);
+			color: var(--text-muted);
+		}
+		.schedule-item .info-bottom .btn-watch i {
+			margin-right: 6px;
+		}
+		.schedule-item .info-bottom .extra-info {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-end;
+			font-size: 0.7rem;
+			color: var(--text-secondary);
+			white-space: nowrap;
+		}
+		.schedule-item .info-bottom .extra-info .time {
+			color: var(--text-muted);
+		}
+		.schedule-item .info-bottom .extra-info .time i {
+			color: var(--gold);
+			margin-right: 4px;
+		}
+		.schedule-more {
+			margin-top: 28px;
+			text-align: center;
+		}
+		.footer {
+			padding: 40px 0 30px;
+			background: var(--bg-primary);
+			border-top: 1px solid rgba(201, 168, 76, 0.08);
+		}
+		.footer .container {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			gap: 30px;
+		}
+		.footer .brand .logo {
+			font-size: 1.8rem;
+			display: inline-block;
+			margin-bottom: 8px;
+		}
+		.footer .brand p {
+			color: var(--text-secondary);
+			max-width: 280px;
+			font-size: 0.95rem;
+		}
+		.footer .socials {
+			display: flex;
+			gap: 14px;
+			margin-top: 12px;
+		}
+		.footer .socials a {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 42px;
+			height: 42px;
+			border-radius: 50%;
+			background: var(--glass-bg);
+			border: 1px solid var(--glass-border);
+			color: var(--text-secondary);
+			font-size: 1.2rem;
+			transition: all var(--transition);
+		}
+		.footer .socials a:hover {
+			background: var(--gold);
+			color: #0b0b0b;
+			border-color: var(--gold);
+			transform: translateY(-3px);
+			box-shadow: 0 0 25px var(--gold-glow);
+		}
+		.footer .links {
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+		}
+		.footer .links a {
+			color: var(--text-secondary);
+			font-size: 0.95rem;
+			transition: color var(--transition);
+		}
+		.footer .links a:hover {
+			color: var(--gold);
+		}
+		.footer .copy {
+			width: 100%;
+			text-align: center;
+			margin-top: 30px;
+			padding-top: 20px;
+			border-top: 1px solid rgba(255, 255, 255, 0.04);
+			color: var(--text-secondary);
+			font-size: 0.85rem;
+		}
+
+		/* ===== Responsive ===== */
+		@media (max-width: 1200px) {
+			.releases-grid {
+				grid-template-columns: repeat(4, 1fr);
+			}
+			.continue-item {
+				flex: 0 0 calc(33.333% - 12px);
+				min-width: calc(33.333% - 12px);
+			}
+		}
+		@media (max-width: 992px) {
+			.releases-grid {
+				grid-template-columns: repeat(3, 1fr);
+			}
+			.schedule-grid {
+				grid-template-columns: repeat(3, 1fr);
+			}
+			.genres-grid {
+				grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+			}
+			.continue-item {
+				flex: 0 0 calc(50% - 12px);
+				min-width: calc(50% - 12px);
+			}
+		}
+		@media (max-width: 768px) {
+			/* Header */
+			.logo {
+				display: none;
+			}
+			.logo-square {
+				display: flex;
+			}
+			.header .container {
+				flex-wrap: nowrap;
+				gap: 8px;
+			}
+			.search-wrap {
+				max-width: 100%;
+				flex: 1;
+			}
+			.header-actions {
+				display: none;
+			}
+			.burger {
+				display: flex;
+				order: 2;
+			}
+			.nav {
+				position: fixed;
+				top: 0;
+				right: -100%;
+				width: 80%;
+				height: 100vh;
+				background: var(--bg-primary);
+				flex-direction: column;
+				justify-content: flex-start;
+				padding: 24px 20px 40px;
+				gap: 12px;
+				transition: right 0.4s ease;
+				border-left: 1px solid rgba(201, 168, 76, 0.1);
+				box-shadow: -10px 0 40px rgba(0, 0, 0, 0.8);
+				backdrop-filter: blur(12px);
+				overflow-y: auto;
+				align-items: stretch;
+				order: unset;
+				flex: unset;
+				z-index: 1001;
+			}
+			.nav.open {
+				right: 0;
+			}
+			.nav a {
+				font-size: 1.1rem;
+				padding: 8px 0;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+			}
+			.nav a::after {
+				display: none;
+			}
+			.nav .nav-header {
+				display: flex;
+				margin-bottom: 16px;
+				background: var(--glass-bg);
+				border: 1px solid var(--glass-border);
+				border-radius: var(--border-radius);
+				color: var(--gold);
+				font-weight: 600;
+				font-size: 1rem;
+				width: 100%;
+				justify-content: space-between;
+			}
+			.nav .nav-header .close-menu {
+				color: var(--text-secondary);
+			}
+			.nav .nav-header .close-menu:hover {
+				color: var(--gold);
+			}
+			/* Hero */
+			.hero-slider {
+				height: 280px;
+			}
+			.hero-slide {
+				padding: 20px 30px;
+			}
+			.hero-slide .slide-content h2 {
+				font-size: 1.1rem;
+			}
+			.hero-slide .slide-content p {
+				font-size: 0.8rem;
+			}
+			.hero-slide .slide-content .badge {
+				font-size: 0.55rem;
+			}
+			.hero-slide .slide-content .btn-glass {
+				padding: 4px 14px;
+				font-size: 0.65rem;
+			}
+			.hero-slide.ad-slide .ad-content i {
+				font-size: 2.2rem;
+			}
+			.hero-slide.ad-slide .ad-content span {
+				font-size: 1rem;
+			}
+			.slider-btn-group {
+				bottom: 8px;
+				right: 8px;
+			}
+			.hero-dots {
+				bottom: 8px;
+			}
+			/* Continue */
+			.continue-item {
+				flex: 0 0 calc(50% - 12px);
+				min-width: calc(50% - 12px);
+			}
+			.continue-sort {
+				font-size: 0.75rem;
+			}
+			.continue-item .top-info .left .title {
+				font-size: 0.85rem;
+			}
+			.continue-item .top-info .left .season-ep {
+				font-size: 0.6rem;
+			}
+			.continue-item .bottom-area .row .btn-continue {
+				font-size: 0.65rem;
+				padding: 3px 10px;
+			}
+			/* Titles */
+			.section-title {
+				font-size: 1rem;
+			}
+			.section-title::after {
+				bottom: -4px;
+				height: 2px;
+			}
+			.section-header {
+				gap: 8px;
+			}
+			.section-actions .btn-glass {
+				font-size: 0.65rem;
+				padding: 4px 12px;
+			}
+			/* Genres */
+			.genres-grid {
+				grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+			}
+			.genres-tab {
+				font-size: 0.8rem;
+				padding: 6px 14px;
+			}
+			.genre-item .name {
+				font-size: 0.9rem;
+			}
+			/* Releases */
+			.releases-grid {
+				grid-template-columns: repeat(2, 1fr);
+				gap: 12px;
+			}
+			.overlay .center h3 {
+				font-size: 0.9rem;
+			}
+			.overlay .details {
+				font-size: 0.6rem;
+				gap: 2px 8px;
+			}
+			.overlay .top .episode-season {
+				font-size: 0.6rem;
+			}
+			.overlay .bottom .btn-watch {
+				font-size: 0.7rem;
+				padding: 6px 0;
+			}
+			/* Schedule */
+			.schedule-grid {
+				grid-template-columns: 1fr;
+				gap: 12px;
+			}
+			.schedule-tab {
+				font-size: 0.75rem;
+				padding: 6px 12px;
+			}
+			.schedule-item .info-top .title {
+				font-size: 0.9rem;
+			}
+			.schedule-item .info-top .episode {
+				font-size: 0.7rem;
+			}
+			.schedule-item .info-bottom .btn-watch {
+				font-size: 0.7rem;
+			}
+			.footer .container {
+				flex-direction: column;
+				align-items: center;
+				text-align: center;
+			}
+			.footer .brand p {
+				max-width: 100%;
+			}
+		}
+		@media (max-width: 480px) {
+			.hero-slider {
+				height: 240px;
+			}
+			.releases-grid {
+				grid-template-columns: 1fr 1fr;
+				gap: 12px;
+			}
+			.schedule-grid {
+				grid-template-columns: 1fr;
+			}
+			.genres-grid {
+				grid-template-columns: repeat(2, 1fr);
+			}
+			.continue-item {
+				flex: 0 0 100%;
+				min-width: 100%;
+			}
+			.continue-sort {
+				gap: 4px;
+			}
+		}
+		/* Десктоп: порядок: лого, поиск, навигация, иконки */
+		@media (min-width: 769px) {
+			.logo {
+				order: 0;
+			}
+			.search-wrap {
+				order: 1;
+				margin-right: 20px;
+			}
+			.nav {
+				order: 2;
+				flex: 0 1 auto;
+				margin-left: auto;
+			}
+			.header-actions {
+				order: 3;
+				margin-left: 0;
+				flex: 0 1 auto;
+			}
+			.burger {
+				display: none;
+			}
+			.logo-square {
+				display: none;
+			}
+			.search-wrap {
+				max-width: 250px;
+			}
+		}
+
+		/* ===== BOTTOM NAV (mobile) ===== */
+		.bottom-nav {
+			display: none;
+		}
+
+		@media (max-width: 768px) {
+
+			/* отступ, чтобы контент не заезжал под плашку */
+			body {
+				padding-bottom: 96px;
+			}
+
+			.bottom-nav {
+				position: fixed;
+				left: 12px;
+				right: 12px;
+				bottom: 12px;
+				z-index: 999;
+				display: flex;
+				align-items: stretch;
+				justify-content: space-between;
+				gap: 4px;
+				padding: 6px;
+				background: rgba(20, 20, 20, 0.85);
+				backdrop-filter: blur(16px);
+				-webkit-backdrop-filter: blur(16px);
+				border: 1px solid var(--glass-border);
+				border-radius: 20px;
+				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(201, 168, 76, 0.05);
+			}
+
+			.bottom-nav-item {
+				flex: 1 1 0;
+				min-width: 0;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				gap: 3px;
+				padding: 6px 2px;
+				border: none;
+				border-radius: 14px;
+				background: transparent;
+				color: var(--text-secondary);
+				font-family: 'Inter', sans-serif;
+				font-size: 0.62rem;
+				font-weight: 600;
+				letter-spacing: 0.01em;
+				cursor: pointer;
+				transition: all var(--transition);
+				-webkit-tap-highlight-color: transparent;
+			}
+
+			.bottom-nav-item i {
+				font-size: 1.05rem;
+				transition: all var(--transition);
+			}
+
+			.bottom-nav-item span {
+				max-width: 100%;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+
+			.bottom-nav-item:hover,
+			.bottom-nav-item.active {
+				color: var(--gold);
+				background: rgba(201, 168, 76, 0.12);
+			}
+
+			.bottom-nav-item.active i {
+				transform: translateY(-1px);
+				filter: drop-shadow(0 0 8px var(--gold-glow));
+			}
+
+			/* Аватарка вместо иконки у профиля */
+			.bottom-nav-item .bottom-avatar {
+				display: block;
+				width: 26px;
+				height: 26px;
+				border-radius: 50%;
+				object-fit: cover;
+				border: 2px solid var(--text-muted);
+				transition: all var(--transition);
+			}
+
+			.bottom-nav-item:hover .bottom-avatar,
+			.bottom-nav-item.active .bottom-avatar {
+				border-color: var(--gold);
+				box-shadow: 0 0 12px var(--gold-glow);
+				transform: translateY(-1px);
+			}
+		}
+	</style>
+</head>
+
+<body>
+
+	<!-- ===== HEADER ===== -->
+	<header class="header">
+		<div class="container">
+			<div class="logo">DAUNI</div>
+			<div class="logo-square">D</div>
+			<div class="search-wrap">
+				<input type="text" class="search-input" placeholder="Поиск..." />
+			</div>
+			<nav class="nav" id="mainNav">
+				<div class="nav-header">
+					<div class="nav-user">
+						<div class="avatar"><i class="fas fa-user"></i></div>
+						<span>вход</span>
+					</div>
+					<button class="close-menu" id="closeMenuBtn"><i class="fas fa-close"></i></button>
+				</div>
+				<a href="#" class="active">Главная</a>
+				<a href="#">Релизы</a>
+				<a href="#">Расписание</a>
+				<a href="#">О студии</a>
+			</nav>
+			<div class="header-actions">
+				<a href="#" class="profile-icon" aria-label="Настройки"><i class="fas fa-gear"></i></a>
+				<a href="#" class="profile-icon" aria-label="Профиль"><i class="fas fa-user"></i></a>
+			</div>
+			<button class="burger" id="burgerBtn" aria-label="Меню">
+				<span></span><span></span><span></span>
+			</button>
+		</div>
+	</header>
+
+	<!-- ===== HERO (единый слайдер) ===== -->
+	<section class="hero">
+		<div class="container">
+			<div class="hero-slider" id="heroSlider">
+				<div class="hero-slides" id="heroSlides">
+					<!-- Новость 1 -->
+					<div class="hero-slide" style="background-color:#1a1a1a;">
+						<div class="slide-bg" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\' viewBox=\'0 0 400 300\'%3E%3Crect width=\'400\' height=\'300\' fill=\'%23222\'/%3E%3Ctext x=\'50\' y=\'150\' font-family=\'Arial\' font-size=\'20\' fill=\'%23666\'%3ENews bg%3C/text%3E%3C/svg%3E');"></div>
+						<div class="slide-content">
+							<span class="badge"><i class="fas fa-newspaper"></i> Новость</span>
+							<h2>Анонс нового сезона</h2>
+							<div class="date"><i class="fas fa-calendar-alt"></i> 20 июля 2026</div>
+							<p>Мы рады сообщить о начале работы над озвучкой долгожданного продолжения.</p>
+							<a href="#" class="btn-glass">Читать</a>
+						</div>
+					</div>
+					<!-- Реклама 1 -->
+					<div class="hero-slide ad-slide">
+						<div class="ad-content">
+							<i class="fas fa-ad"></i>
+							<span>Рекламный баннер</span>
+						</div>
+					</div>
+					<!-- Новость 2 -->
+					<div class="hero-slide" style="background-color:#1a1a1a;">
+						<div class="slide-bg" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\' viewBox=\'0 0 400 300\'%3E%3Crect width=\'400\' height=\'300\' fill=\'%23222\'/%3E%3Ctext x=\'50\' y=\'150\' font-family=\'Arial\' font-size=\'20\' fill=\'%23666\'%3ENews bg%3C/text%3E%3C/svg%3E');"></div>
+						<div class="slide-content">
+							<div class="row"><span class="badge"><i class="fas fa-users"></i> Команда</span><div class="date"><i class="fas fa-calendar-alt"></i> 18 июля 2026</div></div>
+							<h2>Пополнение в студии</h2>
+							<p>К нам присоединился новый звукорежиссёр с опытом работы над крупными проектами.</p>
+							<a href="#" class="btn-glass">Читать</a>
+						</div>
+					</div>
+					<!-- Реклама 2 -->
+					<div class="hero-slide ad-slide">
+						<div class="ad-content">
+							<i class="fas fa-gem"></i>
+							<span>Спецпредложение</span>
+						</div>
+					</div>
+					<!-- Новость 3 -->
+					<div class="hero-slide" style="background-color:#1a1a1a;">
+						<div class="slide-bg" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\' viewBox=\'0 0 400 300\'%3E%3Crect width=\'400\' height=\'300\' fill=\'%23222\'/%3E%3Ctext x=\'50\' y=\'150\' font-family=\'Arial\' font-size=\'20\' fill=\'%23666\'%3ENews bg%3C/text%3E%3C/svg%3E');"></div>
+						<div class="slide-content">
+							<span class="badge"><i class="fas fa-trophy"></i> Достижение</span>
+							<h2>Награда за лучшую озвучку</h2>
+							<div class="date"><i class="fas fa-calendar-alt"></i> 15 июля 2026</div>
+							<p>Наша студия получила приз зрительских симпатий на фестивале аниме.</p>
+							<a href="#" class="btn-glass">Читать</a>
+						</div>
+					</div>
+					<!-- Реклама 3 -->
+					<div class="hero-slide ad-slide">
+						<div class="ad-content">
+							<i class="fas fa-star"></i>
+							<span>Новый проект</span>
+						</div>
+					</div>
+				</div>
+				<div class="slider-btn-group">
+					<button class="slider-btn prev" id="heroPrev"><i class="fas fa-chevron-left"></i></button>
+					<button class="slider-btn next" id="heroNext"><i class="fas fa-chevron-right"></i></button>
+				</div>
+				<div class="hero-dots" id="heroDots"></div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ===== CONTINUE WATCHING ===== -->
+	<section class="continue-watching">
+		<div class="container">
+			<div class="section-header">
+				<h2 class="section-title"><i class="fas fa-clock"></i> Продолжить просмотр</h2>
+				<div class="continue-sort">
+					<div class="sort-dropdown" id="sortDropdown">
+						<button class="btn-glass" id="sortBtn">Недавние <i class="fas fa-chevron-down"></i></button>
+						<div class="dropdown-content" id="sortMenu">
+							<button data-sort="recent">Недавние</button>
+							<button data-sort="oldest">Самые старые</button>
+							<button data-sort="latest-ep">По убыванию серии</button>
+							<button data-sort="earliest-ep">По возрастанию серии</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="continue-slider" id="continueSlider">
+				<div class="continue-track" id="continueTrack"></div>
+				<button class="slider-btn prev" id="continuePrev"><i class="fas fa-chevron-left"></i></button>
+				<button class="slider-btn next" id="continueNext"><i class="fas fa-chevron-right"></i></button>
+			</div>
+		</div>
+	</section>
+
+	<!-- ===== GENRES SECTION ===== -->
+	<section class="genres-sec">
+		<div class="container">
+			<div class="section-header">
+				<h2 class="section-title"><i class="fas fa-tags"></i> Жанры</h2>
+				<div class="genres-tabs" id="genresTabs">
+					<button class="genres-tab active" data-type="anime">Аниме</button>
+					<button class="genres-tab" data-type="movies">Фильмы</button>
+				</div>
+			</div>
+			<div class="genres-grid" id="genresGrid"></div>
+		</div>
+	</section>
+
+	<!-- ===== NEW EPISODES ===== -->
+	<section class="releases">
+		<div class="container">
+			<div class="section-header">
+				<h2 class="section-title"><i class="fas fa-newspaper"></i> Новые эпизоды</h2>
+				<div class="section-actions">
+					<a href="#" class="btn-glass"><i class="fas fa-list-ul"></i> Полный список</a>
+				</div>
+			</div>
+			<div class="releases-grid" id="releasesGrid"></div>
+		</div>
+	</section>
+
+	<!-- ===== SCHEDULE ===== -->
+	<section class="schedule">
+		<div class="container">
+			<div class="section-header">
+				<h2 class="section-title"><i class="fas fa-calendar-week"></i> Расписание на неделю</h2>
+				<div class="section-actions">
+					<a href="#" class="btn-glass"><i class="fas fa-calendar-alt"></i> Полное расписание</a>
+				</div>
+			</div>
+			<div class="schedule-tabs" id="scheduleTabs">
+				<button class="schedule-tab active" data-day="0">Пн</button>
+				<button class="schedule-tab" data-day="1">Вт</button>
+				<button class="schedule-tab" data-day="2">Ср</button>
+				<button class="schedule-tab" data-day="3">Чт</button>
+				<button class="schedule-tab" data-day="4">Пт</button>
+				<button class="schedule-tab" data-day="5">Сб</button>
+				<button class="schedule-tab" data-day="6">Вс</button>
+			</div>
+			<div class="schedule-grid" id="scheduleGrid"></div>
+			<div class="schedule-more" id="scheduleMore" style="display: none;">
+				<a href="#" class="btn-glass"><i class="fas fa-chevron-circle-down"></i> Ещё релизы</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- ===== FOOTER ===== -->
+	<footer class="footer">
+		<div class="container">
+			<div class="brand">
+				<div class="logo">DAUNI</div>
+				<p>Студия профессионального озвучивания аниме. Даём голос вашим любимым героям.</p>
+				<div class="socials">
+					<a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+					<a href="#" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+					<a href="#" aria-label="VK"><i class="fab fa-vk"></i></a>
+					<a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
+				</div>
+			</div>
+			<div class="links">
+				<h4>Навигация</h4>
+				<a href="#">Главная</a>
+				<a href="#">Релизы</a>
+				<a href="#">Расписание</a>
+				<a href="#">О студии</a>
+			</div>
+			<div class="links">
+				<h4>Контакты</h4>
+				<a href="mailto:info@dauni.ru">info@dauni.ru</a>
+				<a href="#">Сотрудничество</a>
+				<a href="#">Помощь</a>
+			</div>
+			<div class="copy">© 2026 DAUNI. Все права защищены.</div>
+		</div>
+	</footer>
+
+	<!-- ===== BOTTOM NAV (mobile) ===== -->
+	<nav class="bottom-nav" id="bottomNav">
+		<a href="#" class="bottom-nav-item active" data-nav="home">
+			<i class="fas fa-house"></i>
+			<span>Главная</span>
+		</a>
+		<a href="#" class="bottom-nav-item" data-nav="releases">
+			<i class="fas fa-clapperboard"></i>
+			<span>Релизы</span>
+		</a>
+		<a href="#" class="bottom-nav-item" data-nav="schedule">
+			<i class="fas fa-calendar-week"></i>
+			<span>Расписание</span>
+		</a>
+		<a href="#" class="bottom-nav-item" data-nav="profile">
+			<img class="bottom-avatar"
+				src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%23c9a84c'/%3E%3Ccircle cx='32' cy='25' r='11' fill='%230b0b0b'/%3E%3Cpath d='M11 62c0-11.6 9.4-21 21-21s21 9.4 21 21z' fill='%230b0b0b'/%3E%3C/svg%3E"
+				alt="Профиль" />
+			<span>Профиль</span>
+		</a>
+	</nav>
+
+	<script>
+		(function () {
+			'use strict';
+
+			// ===== MOBILE MENU =====
+			const burger = document.getElementById('burgerBtn');
+			const nav = document.getElementById('mainNav');
+			const closeMenuBtn = document.getElementById('closeMenuBtn');
+
+			function toggleMenu(open) {
+				burger.classList.toggle('active', open);
+				nav.classList.toggle('open', open);
+			}
+			burger.addEventListener('click', function (e) {
+				e.stopPropagation();
+				toggleMenu(!nav.classList.contains('open'));
+			});
+			closeMenuBtn.addEventListener('click', function () {
+				toggleMenu(false);
+			});
+			nav.querySelectorAll('a').forEach(link => {
+				link.addEventListener('click', () => toggleMenu(false));
+			});
+			document.addEventListener('click', function (e) {
+				if (nav.classList.contains('open') && !nav.contains(e.target) && !burger.contains(e.target)) {
+					toggleMenu(false);
+				}
+			});
+
+			// ===== BOTTOM NAV (mobile) =====
+			const bottomNav = document.getElementById('bottomNav');
+			if (bottomNav) {
+				bottomNav.querySelectorAll('.bottom-nav-item').forEach(item => {
+					item.addEventListener('click', function (e) {
+						e.preventDefault();
+						bottomNav.querySelectorAll('.bottom-nav-item').forEach(i => i.classList.remove('active'));
+						this.classList.add('active');
+					});
+				});
+			}
+
+			// ===== HERO SLIDER =====
+			const heroSlides = document.getElementById('heroSlides');
+			const heroPrev = document.getElementById('heroPrev');
+			const heroNext = document.getElementById('heroNext');
+			const heroDots = document.getElementById('heroDots');
+			let heroIndex = 0;
+			const totalSlides = heroSlides.children.length;
+
+			for (let i = 0; i < totalSlides; i++) {
+				const dot = document.createElement('button');
+				dot.className = 'dot' + (i === 0 ? ' active' : '');
+				dot.dataset.index = i;
+				dot.addEventListener('click', function () {
+					goToHero(parseInt(this.dataset.index));
+				});
+				heroDots.appendChild(dot);
+			}
+			const dots = heroDots.querySelectorAll('.dot');
+
+			function goToHero(index) {
+				if (index < 0) index = totalSlides - 1;
+				if (index >= totalSlides) index = 0;
+				heroIndex = index;
+				heroSlides.style.transform = `translateX(-${heroIndex * 100}%)`;
+				dots.forEach((dot, i) => dot.classList.toggle('active', i === heroIndex));
+			}
+			heroPrev.addEventListener('click', () => goToHero(heroIndex - 1));
+			heroNext.addEventListener('click', () => goToHero(heroIndex + 1));
+
+			let heroAutoplay = setInterval(() => goToHero(heroIndex + 1), 5000);
+			const heroSlider = document.getElementById('heroSlider');
+			heroSlider.addEventListener('mouseenter', () => clearInterval(heroAutoplay));
+			heroSlider.addEventListener('mouseleave', () => {
+				heroAutoplay = setInterval(() => goToHero(heroIndex + 1), 5000);
+			});
+
+			// ===== FORMAT TIME =====
+			function formatTimeAgo(timestamp) {
+				const now = Date.now();
+				const diff = now - timestamp;
+				const seconds = Math.floor(diff / 1000);
+				const minutes = Math.floor(seconds / 60);
+				const hours = Math.floor(minutes / 60);
+				const days = Math.floor(hours / 24);
+
+				const date = new Date(timestamp);
+				const hh = String(date.getHours()).padStart(2, '0');
+				const mm = String(date.getMinutes()).padStart(2, '0');
+				const timeStr = `${hh}:${mm}`;
+
+				if (seconds < 60) return 'Только что';
+				if (minutes < 60) return `${minutes} мин. назад`;
+				if (hours < 24) return `Сегодня в ${timeStr}`;
+				if (days === 1) return `Вчера в ${timeStr}`;
+				if (days < 7) {
+					const weekdays = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
+					return `${weekdays[date.getDay()]} в ${timeStr}`;
+				}
+				if (days < 30) return `${days} дн. назад в ${timeStr}`;
+				const day = String(date.getDate()).padStart(2, '0');
+				const month = String(date.getMonth() + 1).padStart(2, '0');
+				const year = date.getFullYear();
+				return `${day}.${month}.${year} в ${timeStr}`;
+			}
+
+			// ===== RELEASES =====
+			const releasesGrid = document.getElementById('releasesGrid');
+			const now = Date.now();
+			const dayMs = 86400000;
+			const releasesData = [
+				{ title: 'Атака Титанов Финал', episode: 3, season: 4, timestamp: now - 2 * 60 * 60 * 1000, year: 2026,
+					type: 'TV', age: '18+', genres: ['Экшн', 'Драма', 'Фэнтези'] },
+				{ title: 'Ванпанчмен 3 сезон', episode: 1, season: 3, timestamp: now - 5 * 60 * 60 * 1000, year: 2026,
+					type: 'TV', age: '16+', genres: ['Комедия', 'Экшн', 'Пародия'] },
+				{ title: 'Клинок, рассекающий демонов', episode: 12, season: 4, timestamp: now - 1 * dayMs, year: 2025,
+					type: 'TV', age: '16+', genres: ['Экшн', 'Фэнтези', 'Исторический'] },
+				{ title: 'Магическая битва 2 сезон', episode: 15, season: 2, timestamp: now - 3 * 60 * 60 * 1000, year: 2026,
+					type: 'TV', age: '16+', genres: ['Экшн', 'Сверхъестественное', 'Школа'] },
+				{ title: 'Токийские мстители 3 сезон', episode: 7, season: 3, timestamp: now - 2 * dayMs, year: 2026,
+					type: 'ONA', age: '16+', genres: ['Драма', 'Криминал', 'Романтика'] },
+				{ title: 'Боец Баки 4 сезон', episode: 3, season: 4, timestamp: now - 10 * dayMs, year: 2025, type: 'TV',
+					age: '18+', genres: ['Экшн', 'Спорт', 'Боевые искусства'] },
+			];
+			releasesData.sort((a, b) => b.timestamp - a.timestamp);
+			releasesData.forEach(item => {
+				const card = document.createElement('div');
+				card.className = 'release-card';
+				const timeStr = formatTimeAgo(item.timestamp);
+				card.innerHTML = `
+					<div class="poster"><i class="fas fa-play-circle"></i></div>
+					<div class="overlay">
+						<div class="top">
+							<div class="episode-season">
+								<i class="fas fa-layer-group"></i> Эпизод ${item.episode}
+								<span class="sep">•</span>
+								Сезон ${item.season} <i class="fas fa-tag"></i>
+							</div>
+							<div class="time-ago"><i class="fas fa-clock"></i> ${timeStr}</div>
+						</div>
+						<div class="center"><h3>${item.title}</h3></div>
+						<div class="footer-overlay">
+							<div class="details">
+								<span class="item"><i class="fas fa-calendar-alt"></i> ${item.year}</span>
+								<span class="item"><i class="fas fa-tag"></i> ${item.type}</span>
+								<span class="item"><i class="fas fa-user-lock"></i> ${item.age}</span>
+								<span class="genres">${item.genres.map(g => `<span>${g}</span>`).join('')}</span>
+							</div>
+							<div class="bottom">
+								<a href="#" class="btn-watch"><i class="fas fa-play"></i> Смотреть</a>
+							</div>
+						</div>
+					</div>
+				`;
+				releasesGrid.appendChild(card);
+			});
+
+			// ===== GENRES =====
+			const genresGrid = document.getElementById('genresGrid');
+			const genresTabs = document.querySelectorAll('.genres-tab');
+			const genresData = {
+				anime: [
+					{ name: 'Экшн', count: 42 },
+					{ name: 'Фэнтези', count: 38 },
+					{ name: 'Драма', count: 35 },
+					{ name: 'Комедия', count: 29 },
+					{ name: 'Романтика', count: 24 },
+					{ name: 'Научн. фантастика', count: 22 },
+					{ name: 'Приключения', count: 20 },
+					{ name: 'Сверхъестествен.', count: 18 },
+					{ name: 'Повседневность', count: 15 },
+					{ name: 'Спорт', count: 12 },
+					{ name: 'Триллер', count: 11 },
+					{ name: 'Ужасы', count: 9 },
+				],
+				movies: [
+					{ name: 'Драма', count: 18 },
+					{ name: 'Комедия', count: 15 },
+					{ name: 'Экшн', count: 14 },
+					{ name: 'Фэнтези', count: 11 },
+					{ name: 'Романтика', count: 10 },
+					{ name: 'Триллер', count: 8 },
+					{ name: 'Научн. фантастика', count: 7 },
+					{ name: 'Приключения', count: 6 },
+					{ name: 'Ужасы', count: 5 },
+					{ name: 'Документальный', count: 4 },
+				]
+			};
+
+			function renderGenres(type) {
+				const data = genresData[type] || [];
+				genresGrid.innerHTML = '';
+				data.forEach(item => {
+					const div = document.createElement('div');
+					div.className = 'genre-item';
+					div.innerHTML =
+					`<div class="name">${item.name}</div><div class="count"><i class="fas fa-film"></i> ${item.count} релизов</div>`;
+					genresGrid.appendChild(div);
+				});
+			}
+			genresTabs.forEach(tab => {
+				tab.addEventListener('click', function () {
+					genresTabs.forEach(t => t.classList.remove('active'));
+					this.classList.add('active');
+					renderGenres(this.dataset.type);
+				});
+			});
+			renderGenres('anime');
+
+			// ===== SCHEDULE =====
+			const scheduleTabs = document.querySelectorAll('.schedule-tab');
+			const scheduleGrid = document.getElementById('scheduleGrid');
+			const scheduleMore = document.getElementById('scheduleMore');
+
+			const scheduleData = [{
+				day: 'Понедельник',
+				items: [
+					{ title: 'Атака Титанов', episode: 22, season: 4, time: '15:00', duration: '25 мин',
+						released: true, poster: 'fa-skull', year: 2026, type: 'TV', age: '18+',
+						genres: ['Экшн', 'Драма'] },
+					{ title: 'Атака Титанов', episode: 23, season: 4, time: '20:45', duration: '25 мин',
+						released: false, poster: 'fa-skull', year: 2026, type: 'TV', age: '18+',
+						genres: ['Экшн', 'Драма'] }
+				]
+			}, {
+				day: 'Вторник',
+				items: [
+					{ title: 'Ванпанчмен', episode: 1, season: 3, time: '21:30', duration: '24 мин',
+						released: false, poster: 'fa-fist-raised', year: 2026, type: 'TV', age: '16+',
+						genres: ['Комедия', 'Экшн'] }
+				]
+			}, {
+				day: 'Среда',
+				items: [
+					{ title: 'Клинок, рассекающий демонов', episode: 14, season: 4, time: '19:00',
+						duration: '24 мин', released: true, poster: 'fa-sword', year: 2025, type: 'TV',
+						age: '16+', genres: ['Экшн', 'Фэнтези'] }
+				]
+			}, {
+				day: 'Четверг',
+				items: [
+					{ title: 'Магическая битва', episode: 15, season: 2, time: '22:00', duration: '23 мин',
+						released: false, poster: 'fa-magic', year: 2026, type: 'TV', age: '16+',
+						genres: ['Экшн', 'Сверхъестественное'] }
+				]
+			}, {
+				day: 'Пятница',
+				items: [
+					{ title: 'Токийские мстители', episode: 7, season: 3, time: '20:30', duration: '24 мин',
+						released: true, poster: 'fa-city', year: 2026, type: 'ONA', age: '16+',
+						genres: ['Драма', 'Криминал'] }
+				]
+			}, {
+				day: 'Суббота',
+				items: [
+					{ title: 'Боец Баки', episode: 3, season: 4, time: '18:00', duration: '25 мин',
+						released: false, poster: 'fa-fist-raised', year: 2025, type: 'TV', age: '18+',
+						genres: ['Экшн', 'Спорт'] }
+				]
+			}, {
+				day: 'Воскресенье',
+				items: [
+					{ title: 'Восхождение героя щита', episode: 10, season: 3, time: '17:00', duration: '24 мин',
+						released: true, poster: 'fa-shield-alt', year: 2026, type: 'TV', age: '16+',
+						genres: ['Фэнтези', 'Приключения'] }
+				]
+			}, ];
+
+			let totalItems = 0;
+			scheduleData.forEach(day => totalItems += day.items.length);
+
+			function renderSchedule(dayIndex) {
+				const dayData = scheduleData[dayIndex];
+				if (!dayData) return;
+				scheduleGrid.innerHTML = '';
+				const items = [...dayData.items].sort((a, b) => {
+					const timeA = a.time.split(':').map(Number);
+					const timeB = b.time.split(':').map(Number);
+					return (timeA[0] * 60 + timeA[1]) - (timeB[0] * 60 + timeB[1]);
+				});
+				items.forEach(item => {
+					const div = document.createElement('div');
+					div.className = 'schedule-item';
+					const posterIcon = item.poster || 'fa-play-circle';
+					let buttonHtml;
+					if (item.released) {
+						buttonHtml = `<button class="btn-watch"><i class="fas fa-play"></i> Смотреть</button>`;
+					} else {
+						buttonHtml =
+							`<button class="btn-watch" disabled><i class="fas fa-clock"></i> Ещё не вышла</button>`;
+					}
+					div.innerHTML = `
+						<div class="poster-bg"><i class="fas ${posterIcon}"></i></div>
+						<div class="info-top">
+							<div class="title">${item.title}</div>
+							<div class="episode"><i class="fas fa-play-circle"></i> ${item.episode} серия • ${item.season} сезон <span class="duration">${item.duration}</span></div>
+							<div class="meta">
+								<span class="item"><i class="fas fa-calendar-alt"></i> ${item.year}</span>
+								<span class="item"><i class="fas fa-tag"></i> ${item.type}</span>
+								<span class="item"><i class="fas fa-user-lock"></i> ${item.age}</span>
+							</div>
+							<div class="genres">${item.genres.map(g => `<span>${g}</span>`).join('')}</div>
+						</div>
+						<div class="info-bottom">
+							${buttonHtml}
+							<div class="extra-info">
+								<span class="time"><i class="fas fa-hourglass-start"></i> ${item.time}</span>
+							</div>
+						</div>
+					`;
+					scheduleGrid.appendChild(div);
+				});
+				if (totalItems > 12) {
+					scheduleMore.style.display = 'block';
+				} else {
+					scheduleMore.style.display = 'none';
+				}
+			}
+
+			function setActiveTab(dayIndex) {
+				scheduleTabs.forEach((tab, idx) => tab.classList.toggle('active', idx === dayIndex));
+				renderSchedule(dayIndex);
+			}
+			scheduleTabs.forEach((tab, idx) => tab.addEventListener('click', () => setActiveTab(idx)));
+			setActiveTab(0);
+
+			// ===== CONTINUE WATCHING =====
+			const continueTrack = document.getElementById('continueTrack');
+			const continuePrev = document.getElementById('continuePrev');
+			const continueNext = document.getElementById('continueNext');
+			const sortBtn = document.getElementById('sortBtn');
+			const sortMenu = document.getElementById('sortMenu');
+			let currentSort = 'recent';
+
+			const continueData = [{
+				id: 1,
+				title: 'Атака Титанов',
+				season: 4,
+				episode: 18,
+				progress: 0.45,
+				lastWatch: now - 2 * 60 * 60 * 1000,
+				totalEpisodes: 28,
+				poster: 'fa-skull'
+			}, {
+				id: 2,
+				title: 'Ванпанчмен',
+				season: 3,
+				episode: 2,
+				progress: 0.70,
+				lastWatch: now - 5 * 60 * 60 * 1000,
+				totalEpisodes: 12,
+				poster: 'fa-fist-raised'
+			}, {
+				id: 3,
+				title: 'Клинок, рассекающий демонов',
+				season: 4,
+				episode: 9,
+				progress: 0.10,
+				lastWatch: now - 2 * dayMs,
+				totalEpisodes: 24,
+				poster: 'fa-sword'
+			}, {
+				id: 4,
+				title: 'Магическая битва',
+				season: 2,
+				episode: 20,
+				progress: 0.80,
+				lastWatch: now - 3 * 60 * 60 * 1000,
+				totalEpisodes: 24,
+				poster: 'fa-magic'
+			}, {
+				id: 5,
+				title: 'Токийские мстители',
+				season: 3,
+				episode: 5,
+				progress: 0.25,
+				lastWatch: now - 8 * dayMs,
+				totalEpisodes: 13,
+				poster: 'fa-city'
+			}, {
+				id: 6,
+				title: 'Боец Баки',
+				season: 4,
+				episode: 1,
+				progress: 0.05,
+				lastWatch: now - 12 * dayMs,
+				totalEpisodes: 12,
+				poster: 'fa-fist-raised'
+			}, ];
+
+			let currentSlide = 0;
+			const gap = 16;
+
+			function getSortedData(sortType) {
+				const data = [...continueData];
+				switch (sortType) {
+					case 'recent':
+						return data.sort((a, b) => b.lastWatch - a.lastWatch);
+					case 'oldest':
+						return data.sort((a, b) => a.lastWatch - b.lastWatch);
+					case 'latest-ep':
+						return data.sort((a, b) => (b.season * 100 + b.episode) - (a.season * 100 + a.episode));
+					case 'earliest-ep':
+						return data.sort((a, b) => (a.season * 100 + a.episode) - (b.season * 100 + b.episode));
+					default:
+						return data;
+				}
+			}
+
+			function renderContinue() {
+				const sorted = getSortedData(currentSort);
+				continueTrack.innerHTML = '';
+				sorted.forEach(item => {
+					const div = document.createElement('div');
+					div.className = 'continue-item';
+					const progressPercent = Math.round(item.progress * 100);
+					const timeAgo = formatTimeAgo(item.lastWatch);
+					div.innerHTML = `
+						<div class="poster-bg"><i class="fas ${item.poster || 'fa-play-circle'}"></i></div>
+						<div class="overlay">
+							<div class="top-info">
+								<div class="left">
+									<div class="season-ep">Сезон ${item.season} • Серия ${item.episode}</div>
+									<div class="title">${item.title}</div>
+								</div>
+								<div class="custom-dropdown">
+									<button class="menu-dots" data-id="${item.id}"><i class="fas fa-ellipsis-v"></i></button>
+									<div class="dropdown-content" id="dropdown-${item.id}">
+										<button data-action="remove">Убрать</button>
+										<button data-action="page">Перейти на страницу</button>
+										<button data-action="offline">Загрузить офлайн</button>
+									</div>
+								</div>
+							</div>
+							<div class="bottom-area">
+								<div class="row">
+									<button class="btn-continue"><i class="fas fa-play"></i> Продолжить</button>
+									<span class="time-ago"><i class="fas fa-clock"></i> ${timeAgo}</span>
+								</div>
+								<div class="progress-wrap">
+									<div class="progress-bar" style="width: ${progressPercent}%;"></div>
+								</div>
+							</div>
+						</div>
+					`;
+					continueTrack.appendChild(div);
+				});
+				// Обработчики для меню трёх точек
+				continueTrack.querySelectorAll('.menu-dots').forEach(btn => {
+					btn.addEventListener('click', function (e) {
+						e.stopPropagation();
+						const dropdown = this.nextElementSibling;
+						document.querySelectorAll('.dropdown-content.show').forEach(el => {
+							if (el !== dropdown) el.classList.remove('show');
+						});
+						dropdown.classList.toggle('show');
+					});
+					const dropdown = btn.parentElement.querySelector('.dropdown-content');
+					dropdown.querySelectorAll('button').forEach(actionBtn => {
+						actionBtn.addEventListener('click', function (e) {
+							e.stopPropagation();
+							const action = this.dataset.action;
+							const id = btn.dataset.id;
+							if (action === 'remove') alert('Тайтл убран из списка');
+							else if (action === 'page') alert('Переход на страницу тайтла');
+							else if (action === 'offline') alert('Загрузка для офлайн просмотра');
+							dropdown.classList.remove('show');
+						});
+					});
+				});
+				document.addEventListener('click', function () {
+					document.querySelectorAll('.dropdown-content.show').forEach(el => el.classList.remove('show'));
+				});
+				currentSlide = 0;
+				updateSlider();
+			}
+
+			function updateSlider() {
+				const items = continueTrack.children;
+				const total = items.length;
+				const visible = getVisibleCount();
+				const maxSlide = Math.max(0, total - visible);
+				if (currentSlide > maxSlide) currentSlide = maxSlide;
+				if (currentSlide < 0) currentSlide = 0;
+
+				if (total === 0) {
+					continueTrack.style.transform = 'translateX(0)';
+					continuePrev.classList.add('hidden');
+					continueNext.classList.add('hidden');
+					return;
+				}
+
+				const firstItem = items[0];
+				const itemWidth = firstItem.offsetWidth;
+				const slideOffset = (itemWidth + gap) * currentSlide;
+				continueTrack.style.transform = `translateX(-${slideOffset}px)`;
+
+				continuePrev.classList.toggle('hidden', currentSlide === 0);
+				continueNext.classList.toggle('hidden', currentSlide >= maxSlide);
+			}
+
+			function getVisibleCount() {
+				const width = window.innerWidth;
+				if (width <= 480) return 1;
+				if (width <= 992) return 2;
+				if (width <= 1200) return 3;
+				return 4;
+			}
+
+			function slide(direction) {
+				const total = continueTrack.children.length;
+				const visible = getVisibleCount();
+				const maxSlide = Math.max(0, total - visible);
+				currentSlide = Math.min(maxSlide, Math.max(0, currentSlide + direction));
+				updateSlider();
+			}
+
+			continuePrev.addEventListener('click', () => slide(-1));
+			continueNext.addEventListener('click', () => slide(1));
+
+			window.addEventListener('resize', () => {
+				updateSlider();
+			});
+
+			// ===== Сортировка через кастомное меню =====
+			sortBtn.addEventListener('click', function (e) {
+				e.stopPropagation();
+				sortMenu.classList.toggle('show');
+			});
+			sortMenu.querySelectorAll('button').forEach(btn => {
+				btn.addEventListener('click', function (e) {
+					e.stopPropagation();
+					const sortValue = this.dataset.sort;
+					currentSort = sortValue;
+					sortBtn.innerHTML = this.textContent + ' <i class="fas fa-chevron-down"></i>';
+					sortMenu.classList.remove('show');
+					renderContinue();
+				});
+			});
+			document.addEventListener('click', function () {
+				sortMenu.classList.remove('show');
+			});
+
+			renderContinue();
+			window.addEventListener('load', function () {
+				updateSlider();
+			});
+
+		})();
+	</script>
+</body>
+
+</html>
