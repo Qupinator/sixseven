@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Страница не найдена | Qupinator</title>
+    <meta http-equiv="content-language" content="ru">
+    <meta name="author" content="Qupinator">
+    <meta name="keywords" content="Qupinator, 404, ошибка, страница не найдена">
+    <meta name="description" content="Вы потерялись в интернете?">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <style>
+        :root {
+            --primary: #D4D4D4;
+            --primary-light: #E4E4E4;
+            --dark-bg: #121212;
+            --dark-card: #1e1e1e;
+            --text: #ffffff;
+            --text-secondary: #b3b3b3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        @font-face {
+            font-family: 'Akrobat';
+            src: url(Akrobat-Bold.otf);
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text);
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            user-select: none;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 0%, rgba(212, 212, 212, 0.237), transparent 40%);
+            z-index: -1;
+        }
+
+	.grid-overlay {
+	    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+	    background-image:
+	    linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+	    linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+	    background-size: 46px 46px;
+	    mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, #000 10%, transparent 75%);
+	    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, #000 10%, transparent 75%);
+  	}
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0;
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {opacity: 0.7;}
+            90% {opacity: 0.7;}
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            gap: 20px;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .home {
+            align-items: center;
+            background: #D4D4D4;
+    	    color: #1a1b24;
+            backdrop-filter: blur(10px);
+    	    -webkit-backdrop-filter: blur(10px);
+	    border: 1px solid rgba(255, 255, 255, 0.08);
+	    border-radius: 16px;
+            display: flex;
+            text-decoration: none;
+            font-family: 'Akrobat';
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 600;
+            height: 100%;
+            justify-content: center;
+            line-height: normal;
+            padding: 20px;
+            text-align: center;
+            text-transform: uppercase;
+            transition: all .3s ease;
+            width: 300px;
+        }
+	.home:hover {
+	    background: #fff;
+	    color: #000;
+	}
+
+        input {
+	    background: rgba(255, 255, 255, 0.06);
+       	    backdrop-filter: blur(10px);
+    	    -webkit-backdrop-filter: blur(10px);
+    	    border: 1px solid rgba(255, 255, 255, 0.08);
+    	    border-radius: 16px;
+    	    padding: 20px;
+    	    color: #fff;
+    	    font-size: 20px;
+    	    font-weight: 600;
+	    font-family: 'Akrobat';
+	    width: 100%;
+            max-width: 300px;
+            line-height: 1;
+            outline: none;
+	    transition: all .3s ease;
+        }
+
+	input:hover {
+	    border-color: rgba(255, 255, 255, 0.2);
+	}
+	input:focus {
+	    border-color: rgba(255, 255, 255, 0.7);
+	}
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-block: 40px -80px;
+        }
+
+        .social-links a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(212, 212, 212, 0.1);
+            color: var(--primary);
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            background: rgba(212, 212, 212, 0.2);
+            transform: translateY(-3px);
+            color: var(--primary-light);
+        }
+        .container>* {
+            opacity: 0;
+            animation: fadeInUp 0.8s forwards;
+        }
+
+        .social-links {animation-delay: 1s;}
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="particles" id="particles"></div>
+    <div class="grid-overlay"></div>
+
+    <div class="container">
+        <input type="text" placeholder="Введите логин">
+        <input type="password" placeholder="Введите пароль">
+        <a href="index.html" class="home">
+            На главную
+        </a>
+
+        <div class="social-links">
+            <a href="https://discord.gg/qQXUJCmPm6" target="_blank" aria-label="Discord"><i
+                    class="fab fa-discord"></i></a>
+            <a href="https://t.me/qupinator_offic" target="_blank" aria-label="Telegram"><i
+                    class="fab fa-telegram"></i></a>
+            <a href="https://vk.com/qupinator" target="_blank" aria-label="ВКонтакте"><i class="fab fa-vk"></i></a>
+            <a href="https://steamcommunity.com/id/qupinator" target="_blank" aria-label="Steam"><i
+                    class="fab fa-steam"></i></a>
+        </div>
+    </div>
+
+    <script>
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                const size = Math.random() * 5 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.animationDelay = `${Math.random() * 15}s`;
+                particle.style.animationDuration = `${Math.random() * 10 + 10}s`;
+                particlesContainer.appendChild(particle);
+            }
+        }
+        window.addEventListener('load', createParticles);
+    </script>
+</body>
+
+</html>
